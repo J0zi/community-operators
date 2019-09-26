@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+if [[ "$VM_DRIVER" == "none" ]]; then
+  minikube start --memory=4096 --vm-driver=${VM_DRIVER} --kubernetes-version="v1.14.0" --extra-config=apiserver.v=10
+else
+  minikube start --memory=4096 --vm-driver=${VM_DRIVER} --kubernetes-version="v1.14.0" --extra-config=apiserver.v=10 -p operators
+fi

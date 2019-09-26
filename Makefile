@@ -14,7 +14,7 @@ minikube.install: ## Install the local minikube
 	@echo "Installed"
 
 minikube.start: ## Start local minikube
-	@scripts/ci/run-script "minikube start --memory=4096 --vm-driver=${VM_DRIVER} --kubernetes-version="v1.14.0" --extra-config=apiserver.v=10 -p operators" "Start minikube"
+	@scripts/ci/run-script "./scripts/ci/start-minikube" "Start minikube"
 
 olm.install: ## Install OLM to your cluster
 	@docker run --network host -v ~/.kube:/root/.kube -v ~/.minikube:${HOME}/.minikube -v ${PWD}/community-operators:/community-operators -v ${PWD}/upstream-community-operators:/upstream-community-operators -it quay.io/operator-framework/operator-testing olm.install --no-print-directory
