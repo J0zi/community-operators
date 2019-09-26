@@ -19,7 +19,7 @@ for path_ver in ${!OPERATORS_TYPE}; do
   OP_PATH="$(echo "$path_ver" | cut -d':' -f1)"
   OP_VER="$(echo "$path_ver" | cut -d':' -f2)"
   echo "Testing '$OP_PATH' version '$OP_VER'"
-  cd ../../
+  cd ../
   echo "$PWD"
   "make operator.test OP_PATH=${OP_PATH} OP_VER=${OP_VER} VERBOSE=1"
 done
