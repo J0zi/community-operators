@@ -18,7 +18,7 @@ install:
 - sudo make minikube.install
 
 before_script:
-- sudo make minikube.start VERBOSE=1
+- sudo make minikube.start VM_DRIVER=none VERBOSE=1
 - sudo chown -R $USER ${HOME}/.{mini,}kube
 - kubectl config use-context minikube
 
