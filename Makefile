@@ -20,10 +20,10 @@ olm.install: ## Install OLM to your cluster
 	@docker run --network host -v ~/.kube:/root/.kube -v ~/.minikube:${HOME}/.minikube -v ${PWD}/community-operators:/community-operators -v ${PWD}/upstream-community-operators:/upstream-community-operators -it quay.io/operator-framework/operator-testing olm.install --no-print-directory
 
 operator.test: check_path ## Operator test which run courier and scorecard
-	@scripts/ci/run-script "docker pull quay.io/operator-framework/operator-testing -q" "Pulling docker image"
+	@scripts/ci/run-script "docker pull quay.io/operator-framework/operator-testing > /dev/null" "Pulling docker image"
 	@scripts/ci/check-kubeconfig
 	@docker run --network host -v ~/.kube:/root/.kube -v ~/.minikube:${HOME}/.minikube -v ${PWD}/community-operators:/community-operators -v ${PWD}/upstream-community-operators:/upstream-community-operators -ti quay.io/operator-framework/operator-testing operator.test --no-print-directory OP_PATH=${OP_PATH} VERBOSE=${VERBOSE} OP_VER=${OP_VER} OP_CHANNEL=${OP_CHANNEL} INSTALL_MODE=${INSTALL_MODE} CLEAN_MODE=${CLEAN_MODE}
 
 operator.verify: check_path ## Run only courier
-	@docker pull quay.io/operator-framework/operator-testing -q
+	@docker pull quay.io/operator-framework/operator-testing > /dev/null
 	@docker run -v ${PWD}/community-operators:/community-operators -v ${PWD}/upstream-community-operators:/upstream-community-operators -ti quay.io/operator-framework/operator-testing operator.verify --no-print-directory OP_PATH=${OP_PATH} VERBOSE=${VERBOSE}
