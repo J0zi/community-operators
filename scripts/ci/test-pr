@@ -13,8 +13,6 @@ if [[ "$DISTRO_TYPE" != "$DISTRO_TYPE_UPSTREAM" && "$DISTRO_TYPE" != "$DISTRO_TY
 fi
 DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 
-echo "Distro is $DISTRO_TYPE"
-
 OPERATORS_TYPE="OPERATORS_${DISTRO_TYPE^^}"
 : ${!OPERATORS_TYPE:?"${OPERATORS_TYPE} is not set"}
 for path_ver in ${!OPERATORS_TYPE}; do
