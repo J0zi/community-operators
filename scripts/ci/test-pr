@@ -14,7 +14,7 @@ fi
 
 echo " This is bash source ${BASH_SOURCE[0]}"
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 
 OPERATORS_TYPE="OPERATORS_${DISTRO_TYPE^^}"
 : ${!OPERATORS_TYPE:?"${OPERATORS_TYPE} is not set"}
