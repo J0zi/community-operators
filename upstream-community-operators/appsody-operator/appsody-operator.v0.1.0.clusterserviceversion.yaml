@@ -18,7 +18,6 @@ spec:
    The Appsody Operator allows easy deployment of applications developed with [Appsody](https://appsody.dev) to Kubernetes environments. The operator provides the following key features:
 
    #### Routing
-  test
 
    Expose your application to external users via a single toggle.
 
