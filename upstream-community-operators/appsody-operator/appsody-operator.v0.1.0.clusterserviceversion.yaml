@@ -23,7 +23,7 @@ test
    Expose your application to external users via a single toggle.
 
    #### High Availability
-test
+test2
    Run multiple instances of your application for high availability. Either specify a static number of replicas or easily configure auto scaling to create (and delete) instances based on resource consumption.
 
    #### Persistence
