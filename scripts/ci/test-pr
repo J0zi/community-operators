@@ -11,6 +11,9 @@ if [[ "$DISTRO_TYPE" != "$DISTRO_TYPE_UPSTREAM" && "$DISTRO_TYPE" != "$DISTRO_TY
   echo "DISTRO_TYPE \"$DISTRO_TYPE\" is not valid. Must be one of: \"$DISTRO_TYPE_UPSTREAM\", \"$DISTRO_TYPE_OPENSHIFT\"."
   exit 1
 fi
+
+echo " This is bash source ${BASH_SOURCE[0]}"
+
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]})"" && pwd)"
 
 OPERATORS_TYPE="OPERATORS_${DISTRO_TYPE^^}"
