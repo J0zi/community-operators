@@ -11,9 +11,9 @@ OP_TYPES=(
   ["upstream"]="upstream-community-operators"
   ["openshift"]="community-operators"
 )
-echo "before bug *****"
+echo 'before bug *****'
 DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
-echo "after bug *****"
+echo 'after bug *****'
 
 for f in "$(cd "$(dirname ${BASH_SOURCE[0]})/.." && pwd)"/lib/*; do
   . "$f"
