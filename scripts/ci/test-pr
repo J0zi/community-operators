@@ -23,6 +23,7 @@ pwd;
 ls;
 
 DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
+echo "DIR is $DIR"
 
 OPERATORS_TYPE="OPERATORS_${DISTRO_TYPE^^}"
 : ${!OPERATORS_TYPE:?"${OPERATORS_TYPE} is not set"}
