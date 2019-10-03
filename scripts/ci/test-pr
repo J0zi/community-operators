@@ -14,7 +14,6 @@ fi
 
 echo " This is bash source ${BASH_SOURCE[0]}"
 echo "dirname output $(dirname ${BASH_SOURCE[0]})"
-cd "$(dirname ${BASH_SOURCE[0]})" && echo 'cd successful'
 pwd;
 ls;
 
