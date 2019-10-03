@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo 'test-pr started****'
 set -e
 
 # Runs scripts/ci/test-operator on each operator with changes in a PR.
@@ -32,3 +32,4 @@ for path_ver in ${!OPERATORS_TYPE}; do
   make
   make operator.test OP_PATH="${OP_PATH}" OP_VER="${OP_VER}" VERBOSE=1
 done
+echo 'test-pr finished****'

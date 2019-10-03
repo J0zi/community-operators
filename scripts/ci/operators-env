@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo 'operator-env started****'
 set -e
 
 # Exports a variable containing a space-delimited list of each operator
@@ -47,3 +47,4 @@ for op_distro in "${!OP_TYPES[@]}"; do
   done
   echo "export $OP_TYPE_VAR=\"${!OP_TYPE_VAR}\";"
 done
+echo 'operator-env finished****'
