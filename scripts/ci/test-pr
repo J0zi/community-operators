@@ -3,7 +3,7 @@
 set -e
 
 # Runs scripts/ci/test-operator on each operator with changes in a PR.
-DISTRO_TYPE=upstream
+DISTRO_TYPE=upstream;
 OPERATORS_UPSTREAM="upstream-community-operators/jaeger:$(yq r --tojson upstream-community-operators/jaeger/jaeger.package.yaml "channels" \
         | jq ".[] | .currentCSV" | sort -V | tail -1 | sed -E 's/"[a-zA-Z\-]+\.?v?([0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?)"/\1/')" \
         scripts/ci/test-pr $DISTRO_TYPE && exit 0
