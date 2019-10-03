@@ -12,6 +12,7 @@ if [[ "$DISTRO_TYPE" != "$DISTRO_TYPE_UPSTREAM" && "$DISTRO_TYPE" != "$DISTRO_TY
   exit 1
 fi
 echo "DISTRO_TYPE is $DISTRO_TYPE"
+echo "OPERATORS_UPSTREAM is $OPERATORS_UPSTREAM"
 echo " This is bash source ${BASH_SOURCE[0]}"
 echo "dirname output $(dirname ${BASH_SOURCE[0]})"
 pwd;
