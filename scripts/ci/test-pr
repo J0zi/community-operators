@@ -21,7 +21,7 @@ DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 
 OPERATORS_TYPE="OPERATORS_${DISTRO_TYPE^^}"
 echo "OPERATORS_TYPE is set to $OPERATORS_TYPE"
-: ${!OPERATORS_TYPE:?"${OPERATORS_TYPE} is not set"}
+: ${OPERATORS_TYPE:?"${OPERATORS_TYPE} is not set"}
 for path_ver in ${!OPERATORS_TYPE}; do
   OP_PATH="$(echo "$path_ver" | cut -d':' -f1)"
   OP_VER="$(echo "$path_ver" | cut -d':' -f2)"
