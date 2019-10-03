@@ -11,7 +11,7 @@ if [[ "$DISTRO_TYPE" != "$DISTRO_TYPE_UPSTREAM" && "$DISTRO_TYPE" != "$DISTRO_TY
   echo "DISTRO_TYPE \"$DISTRO_TYPE\" is not valid. Must be one of: \"$DISTRO_TYPE_UPSTREAM\", \"$DISTRO_TYPE_OPENSHIFT\"."
   exit 1
 fi
-
+echo "DISTRO_TYPE is $DISTRO_TYPE"
 echo " This is bash source ${BASH_SOURCE[0]}"
 echo "dirname output $(dirname ${BASH_SOURCE[0]})"
 pwd;
@@ -20,8 +20,7 @@ ls;
 DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 
 OPERATORS_TYPE="OPERATORS_${DISTRO_TYPE^^}"
-echo "OPERATORS_TYPE is set to $OPERATORS_TYPE"
-: ${OPERATORS_TYPE:?"${OPERATORS_TYPE} is not set"}
+: ${!OPERATORS_TYPE:?"${OPERATORS_TYPE} is not set"}
 for path_ver in ${!OPERATORS_TYPE}; do
   OP_PATH="$(echo "$path_ver" | cut -d':' -f1)"
   OP_VER="$(echo "$path_ver" | cut -d':' -f2)"
