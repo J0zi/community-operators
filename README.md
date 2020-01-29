@@ -1,4 +1,5 @@
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Upstream Operator Catalog Status](https://quay.io/repository/operator-framework/upstream-community-operators/status "Upstream Operator Catalog Status")](https://quay.io/repository/operator-framework/upstream-community-operators)
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -36,7 +37,7 @@ Similarly, to update your operator you need to submit a PR with any changes to y
 
 Upon creating a pull request against this repo, a set of CI pipelines will run, see more details [here](./docs/ci.md).
 
-You can help speed up the review of your PR by [testing locally](./docs/testing-operators.md).
+You can help speed up the review of your PR by testing locally, either [manually](./docs/testing-operators.md) or [using scripts](./docs/using-scripts.md)
 
 ## Preview your Operator on OperatorHub.io
 

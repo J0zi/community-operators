@@ -1,4 +1,5 @@
 packageName: spinnaker-operator
 channels:
-- name: alpha
-  currentCSV: spinnaker-operator.v1.13.1
+- currentCSV: spinnaker-operator.v1.17.4
+  name: alpha
+defaultChannel: alpha

@@ -1,4 +1,5 @@
-packageName: postgresql
+packageName: 'postgresql'
+defaultChannel: stable
 channels:
-- name: alpha
-  currentCSV: postgresoperator.v4.0.1
+  - name: stable
+    currentCSV: 'postgresoperator.v4.2.0'

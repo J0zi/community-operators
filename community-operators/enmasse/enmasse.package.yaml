@@ -1,4 +1,4 @@
-packageName: enmasse
 channels:
-- name: alpha
-  currentCSV: enmasse.0.28.2
+- currentCSV: enmasse.0.30.2
+  name: alpha
+packageName: enmasse

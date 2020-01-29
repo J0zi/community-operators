@@ -1,4 +1,7 @@
-packageName: elastic-cloud-eck
 channels:
-- currentCSV: elastic-cloud-eck.v0.9.0
-  name: preview
+- currentCSV: elastic-cloud-eck.v1.0.0
+  name: beta
+- currentCSV: elastic-cloud-eck.v1.0.0
+  name: stable
+defaultChannel: stable
+packageName: elastic-cloud-eck

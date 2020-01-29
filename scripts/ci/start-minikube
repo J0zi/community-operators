@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-if [[ "$VM_DRIVER" == "none" ]]; then
-  minikube start --memory=4096 --vm-driver="${VM_DRIVER}" --kubernetes-version="v1.14.0" --extra-config=apiserver.v=10
-else
-  minikube start --memory=4096 --vm-driver="${VM_DRIVER}" --kubernetes-version="v1.14.0" --extra-config=apiserver.v=10 -p operators
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  if [[ -z "${VM_DRIVER}" ]]; then
+    export VM_DRIVER=hyperkit
+  fi
 fi
+
+if [[ -n "${KUBE_VER}" ]]; then
+    MINIKUBE_KUBE_VERSION="--kubernetes-version="${KUBE_VER}""
+fi
+
+minikube start --vm-driver=${VM_DRIVER} ${MINIKUBE_KUBE_VERSION} --extra-config=apiserver.v=4 -p operators
