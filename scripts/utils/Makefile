@@ -81,7 +81,8 @@ operator.install: check_path
 
 operator.test: check_path ## Operator test which run courier and scorecard
 	@scripts/ci/make-tmp
-	@make operator.verify
+	#@make operator.verify
+	@scripts/ci/format-related-verifier
 	@scripts/ci/testscript-wrapper
 
 operator.verify: check_path ## Run only courier

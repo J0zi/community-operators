@@ -42,7 +42,7 @@ if [[ -f $CSV_FILE ]]; then
     printf "Creating namespace %s\t[ ${OK} OK ${NC} ]\n" | expand  -t 50 >&2
   fi
 
-  echo -e "TMP=$(mktemp -d 2>/dev/null || mktemp -d)\nNAMESPACE=$NAMESPACE\nOP_VER=$OP_VER" > /tmp/env.conf
+  echo -e "TMP=$(mktemp -d 2>/dev/null || mktemp -d)\nNAMESPACE=$NAMESPACE\nOP_VER=$OP_VER\nOP_FORMAT=$OP_FORMAT" > /tmp/env.conf
 
 else 
   >&2 echo "CSV file for version ${OP_VER} not found test cannot continue"
