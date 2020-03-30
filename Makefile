@@ -23,7 +23,9 @@ check_kind_install :
 	@if [[ "${NO_KIND}" == "0" &&  "$(which kind)" =~ "not found" ]] ; then echo "KIND (https://kind.sigs.k8s.io) is not installed and NO_KIND is not set." ; exit 1 ; fi
 
 force_pull_image:
-	@scripts/ci/run-script "docker pull ${OPERATOR_TESTING_IMAGE}" "Pulling docker image"
+	@echo "IMAGE NOT PULLING, USING LOCAL FOR DEVELOPMENT PURPOSES"
+##TODO: uncomment
+##	@scripts/ci/run-script "docker pull ${OPERATOR_TESTING_IMAGE}" "Pulling docker image"
 
 minikube.install: ## Install the local minikube
 	@./scripts/ci/install-minikube
@@ -52,7 +54,7 @@ operator.cleanup: check_path check_no_kind check_kind_install
 
 operator.test: check_path check_no_kind check_kind_install force_pull_image ## Operator test which run courier and scorecard
 	@python3 scripts/utils/check-kube-config.py
-	@scripts/ci/run-script "scripts/ci/build-catalog-image" "Building catalog image"
+	##@scripts/ci/run-script "scripts/ci/build-catalog-image" "Building catalog image"
 	@docker run --network=host -v ${KUBECONFIG}:/root/.kube/config:z -v ${PWD}/community-operators:/community-operators:z -v ${PWD}/upstream-community-operators:/upstream-community-operators:z -ti ${OPERATOR_TESTING_IMAGE} operator.test --no-print-directory OP_PATH=${OP_PATH} VERBOSE=${VERBOSE} OP_VER=${OP_VER} OP_CHANNEL=${OP_CHANNEL} INSTALL_MODE=${INSTALL_MODE} CLEAN_MODE=${CLEAN_MODE} OLM_VER=${OLM_VER} KUBE_VER=${KUBE_VER} NO_KIND=${NO_KIND} CATALOG_IMAGE=${CATALOG_IMAGE}
 
 operator.verify: check_path force_pull_image ## Run only courier

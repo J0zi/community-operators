@@ -7,26 +7,49 @@ done
 
 export_color
 
-export PKG_FILE="$(find "$OP_PATH" -name "*.package.yaml" -print -quit)"
-export PKG_NAME="$(yq r "$PKG_FILE" "packageName")"
+if ls $OP_PATH/*.package.yaml 1> /dev/null 2>&1 ; then
+	OP_FORMAT='package'
+else
+	DIR_TO_CHECK=$(ls $OP_PATH|grep '^[0-9]'|awk -F '/' '{print $NF}'|sort -V|tail -n 1)
+	OP_FORMAT='bundle'
+fi
 
-if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
-  {
-      export OP_VER="$(python3 /scripts/utils/parse-version-and-channels.py -p "$PKG_FILE" -c "$OP_CHANNEL")"
-      printf "Operator version detected %s\t[ ${OK} $OP_VER ${NC} ]\n" | expand  -t 50 >&2
-  } || {
-     >&2 echo "Operator version cannot be detected."
-    printf "Operator version cannot be detected %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
-    exit 1
-  }
+echo "OP_FORMAT=$OP_FORMAT"
+
+if [[ "$OP_FORMAT" == "package" ]]; then
+
+  export PKG_FILE="$(find "$OP_PATH" -name "*.package.yaml" -print -quit)"
+  export PKG_NAME="$(yq r "$PKG_FILE" "packageName")"
+
+
   if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
-    printf "Operator version not valid. %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
-    exit 1
+    {
+        export OP_VER="$(python3 /scripts/utils/parse-version-and-channels.py -p "$PKG_FILE" -c "$OP_CHANNEL")"
+        printf "Operator version detected %s\t[ ${OK} $OP_VER ${NC} ]\n" | expand  -t 50 >&2
+    } || {
+       >&2 echo "Operator version cannot be detected."
+     printf "Operator version cannot be detected %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
+      exit 1
+    }
+    if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
+     printf "Operator version not valid. %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
+      exit 1
+    fi
+  fi
+else
+  export PKG_FILE='not-relevant-for-bundle'
+
+export PKG_NAME="$(yq r $OP_PATH/$DIR_TO_CHECK/metadata/annotations.yaml "annotations.[operators.operatorframework.io.bundle.package.v1]")"
+
+  if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
+    OP_VER=$DIR_TO_CHECK
+    if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
+    printf "Operator version cannot be detected %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
+    fi
   fi
 fi
 
 export CSV_FILE="$(find "$OP_PATH" -name "*${OP_VER}.clusterserviceversion.yaml" -print -quit)"
-
 
 if [[ -f $CSV_FILE ]]; then
 
@@ -42,10 +65,9 @@ if [[ -f $CSV_FILE ]]; then
     printf "Creating namespace %s\t[ ${OK} OK ${NC} ]\n" | expand  -t 50 >&2
   fi
 
-  echo -e "TMP=$(mktemp -d 2>/dev/null || mktemp -d)\nNAMESPACE=$NAMESPACE\nOP_VER=$OP_VER" > /tmp/env.conf
+  echo -e "TMP=$(mktemp -d 2>/dev/null || mktemp -d)\nNAMESPACE=$NAMESPACE\nOP_VER=$OP_VER\nOP_FORMAT=$OP_FORMAT" > /tmp/env.conf
 
 else 
   >&2 echo "CSV file for version ${OP_VER} not found test cannot continue"
-
   exit 1;
 fi
