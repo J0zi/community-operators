@@ -23,7 +23,8 @@ check_kind_install :
 	@if [[ "${NO_KIND}" == "0" &&  "$(which kind)" =~ "not found" ]] ; then echo "KIND (https://kind.sigs.k8s.io) is not installed and NO_KIND is not set." ; exit 1 ; fi
 
 force_pull_image:
-	@scripts/ci/run-script "docker pull ${OPERATOR_TESTING_IMAGE}" "Pulling docker image"
+echo "IMAGE NOT PULLING, USING LOCAL FOR DEVELOPMENT PURPOSES"
+#	@scripts/ci/run-script "docker pull ${OPERATOR_TESTING_IMAGE}" "Pulling docker image"
 
 minikube.install: ## Install the local minikube
 	@./scripts/ci/install-minikube
