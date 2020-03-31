@@ -7,17 +7,16 @@ done
 
 export_color
 
-cd /home/jbreza/projects/RH/bundle/community-operators/upstream-community-operators/$1
 if ls $OP_PATH/*.package.yaml 1> /dev/null 2>&1 ; then
-	echo "Package"
 	OP_FORMAT='package'
 else
 	DIR_TO_CHECK=$(ls|grep '^[0-9]'|awk -F '/' '{print $NF}'|tail -n 1)
 	if [[ -f "$OP_PATH/$DIR_TO_CHECK/Dockerfile" ]]; then
-		echo "Bundle"
 		OP_FORMAT='bundle'
 	fi
 fi
+
+sleep 1m
 
 export PKG_FILE="$(find "$OP_PATH" -name "*.package.yaml" -print -quit)"
 export PKG_NAME="$(yq r "$PKG_FILE" "packageName")"
