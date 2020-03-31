@@ -13,31 +13,42 @@ else
 	DIR_TO_CHECK=$(ls|grep '^[0-9]'|awk -F '/' '{print $NF}'|tail -n 1)
 	if [[ -f "$OP_PATH/$DIR_TO_CHECK/Dockerfile" ]]; then
 		OP_FORMAT='bundle'
+
 	fi
 fi
 
-sleep 1m
+if [[ "$OP_FORMAT" == "package" ]]; then
 
-export PKG_FILE="$(find "$OP_PATH" -name "*.package.yaml" -print -quit)"
-export PKG_NAME="$(yq r "$PKG_FILE" "packageName")"
+  export PKG_FILE="$(find "$OP_PATH" -name "*.package.yaml" -print -quit)"
+  export PKG_NAME="$(yq r "$PKG_FILE" "packageName")"
 
-if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
-  {
-      export OP_VER="$(python3 /scripts/utils/parse-version-and-channels.py -p "$PKG_FILE" -c "$OP_CHANNEL")"
-      printf "Operator version detected %s\t[ ${OK} $OP_VER ${NC} ]\n" | expand  -t 50 >&2
-  } || {
-     >&2 echo "Operator version cannot be detected."
-    printf "Operator version cannot be detected %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
-    exit 1
-  }
+
   if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
-    printf "Operator version not valid. %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
-    exit 1
+    {
+        export OP_VER="$(python3 /scripts/utils/parse-version-and-channels.py -p "$PKG_FILE" -c "$OP_CHANNEL")"
+        printf "Operator version detected %s\t[ ${OK} $OP_VER ${NC} ]\n" | expand  -t 50 >&2
+    } || {
+       >&2 echo "Operator version cannot be detected."
+     printf "Operator version cannot be detected %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
+      exit 1
+    }
+    if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
+     printf "Operator version not valid. %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
+      exit 1
+    fi
+  fi
+else
+  export PKG_FILE='not-relevant-for-bundle'
+  export PKG_NAME="$(find "$OP_PATH" -name "*${OP_VER}.clusterserviceversion.yaml" -print -quit|awk -F '/' '{print $NF}'|awk -F '.' '{print $1}')"
+  if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
+    OP_VER=$DIR_TO_CHECK
+    if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
+    printf "Operator version cannot be detected %s\t[ ${ERR} FAILED ${NC} ]\n" | expand  -t 50 >&2
+    fi
   fi
 fi
 
 export CSV_FILE="$(find "$OP_PATH" -name "*${OP_VER}.clusterserviceversion.yaml" -print -quit)"
-
 
 if [[ -f $CSV_FILE ]]; then
 
@@ -57,6 +68,6 @@ if [[ -f $CSV_FILE ]]; then
 
 else 
   >&2 echo "CSV file for version ${OP_VER} not found test cannot continue"
-
   exit 1;
 fi
+sleep 10m
