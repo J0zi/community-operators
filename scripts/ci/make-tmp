@@ -43,7 +43,9 @@ if [[ "$OP_FORMAT" == "package" ]]; then
   fi
 else
   export PKG_FILE='not-relevant-for-bundle'
-  export PKG_NAME="$(find "$OP_PATH" -name "*${OP_VER}.clusterserviceversion.yaml" -print -quit|awk -F '/' '{print $NF}'|awk -F '.' '{print $1}')"
+
+export PKG_NAME="$(yq r $OP_PATH/$DIR_TO_CHECK/metadata/annotations.yaml "annotations.[operators.operatorframework.io.bundle.package.v1]")"
+
   if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
     OP_VER=$DIR_TO_CHECK
     if [[ -z "$OP_VER" || ! "$OP_VER" =~ $SEMVER_REGEX ]]; then
