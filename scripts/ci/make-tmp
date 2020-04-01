@@ -10,12 +10,16 @@ export_color
 if ls $OP_PATH/*.package.yaml 1> /dev/null 2>&1 ; then
 	OP_FORMAT='package'
 else
-	DIR_TO_CHECK=$(ls|grep '^[0-9]'|awk -F '/' '{print $NF}'|tail -n 1)
-	if [[ -f "$OP_PATH/$DIR_TO_CHECK/Dockerfile" ]]; then
+	DIR_TO_CHECK=$(ls $OP_PATH|grep '^[0-9]'|awk -F '/' '{print $NF}'|tail -n 1)
+#	if [[ -f "$OP_PATH/$DIR_TO_CHECK/Dockerfile" ]]; then
+if ls $OP_PATH/$DIR_TO_CHECK/Dockerfile 1> /dev/null 2>&1 ; then
 		OP_FORMAT='bundle'
 
 	fi
 fi
+
+echo "DIR_TO_CHECK=$DIR_TO_CHECK"
+echo "OP_FORMAT=$OP_FORMAT"
 
 if [[ "$OP_FORMAT" == "package" ]]; then
 
@@ -70,4 +74,3 @@ else
   >&2 echo "CSV file for version ${OP_VER} not found test cannot continue"
   exit 1;
 fi
-sleep 10m
