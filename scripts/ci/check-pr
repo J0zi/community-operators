@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo "modification check started ************"
 set -e
 
 DIRS=()
@@ -36,3 +36,4 @@ elif [[ "$1" == "openshift" ]] || ! git diff --name-only $GIT_INFO | grep -E -q 
   echo "No manifest or script files were updated, not running the CI."
   exit 0
 fi
+echo "modification check ended ************"
