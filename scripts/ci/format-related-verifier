@@ -7,23 +7,28 @@ export $(grep 'OP_FORMAT' /tmp/env.conf)
 
 if [[ "$OP_FORMAT" == "bundle" ]]; then
 
+  echo "bundle verify started ***********"
   #TODO: fix
-  cd ${HOME}/go/test-operator
+  #cd ${HOME}/go/test-operator
+  cd $OP_PATH
   # Generate manifests locally.
   operator-sdk bundle build --generate-only
   # Modify the metadata and Dockerfile.
   cd ./deploy/olm-catalog/test-operator
-  vim ./metadata/annotations.yaml
-  vim ./Dockerfile
+  #vim ./metadata/annotations.yaml
+  #vim ./Dockerfile
   # Build and push the image using the docker CLI.
   docker build -t quay.io/example/test-operator:v0.1.0 .
-  docker push quay.io/example/test-operator:v0.1.0
+  #docker push quay.io/example/test-operator:v0.1.0
   # Ensure the image with modified metadata/Dockerfile is valid.
   operator-sdk bundle validate quay.io/example/test-operator:v0.1.0
+  echo "bundle verify finished ***********"
 
 else
   #courier
+  echo "courier started ***********"
   make operator.verify OP_PATH="${OP_PATH}" OP_VER="${OP_VER}"
+  echo "courier finished ***********"
 fi
 
 

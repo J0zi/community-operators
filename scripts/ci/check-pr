@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo "modification check started ******----******"
 set -e
-
+##TODO: mute debug echos
 DIRS=()
 GIT_INFO=""
 

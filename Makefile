@@ -22,12 +22,12 @@ check_no_kind :
 check_kind_install :
 	@if [[ "${NO_KIND}" == "0" &&  "$(which kind)" =~ "not found" ]] ; then echo "KIND (https://kind.sigs.k8s.io) is not installed and NO_KIND is not set." ; exit 1 ; fi
 
-
-#	@echo "IMAGE NOT PULLING, USING LOCAL FOR DEVELOPMENT PURPOSES"
-##TODO: uncomment
-##	@scripts/ci/run-script "docker pull ${OPERATOR_TESTING_IMAGE}" "Pulling docker image"
+##TODO:
 force_pull_image:
-	@scripts/ci/run-script "docker pull quay.io/operator-framework/operator-testing:j0zi "Pulling TEMPORARY docker image"
+	@echo "IMAGE NOT PULLING, USING LOCAL FOR DEVELOPMENT PURPOSES"
+#	@scripts/ci/run-script "docker pull ${OPERATOR_TESTING_IMAGE}" "Pulling docker image" #original
+
+#	@scripts/ci/run-script "docker pull quay.io/operator-framework/operator-testing:j0zi "Pulling TEMPORARY docker image"
 
 minikube.install: ## Install the local minikube
 	@./scripts/ci/install-minikube
