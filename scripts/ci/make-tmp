@@ -11,11 +11,7 @@ if ls $OP_PATH/*.package.yaml 1> /dev/null 2>&1 ; then
 	OP_FORMAT='package'
 else
 	DIR_TO_CHECK=$(ls $OP_PATH|grep '^[0-9]'|awk -F '/' '{print $NF}'|sort -V|tail -n 1)
-#	if [[ -f "$OP_PATH/$DIR_TO_CHECK/Dockerfile" ]]; then
-if ls $OP_PATH/$DIR_TO_CHECK/Dockerfile 1> /dev/null 2>&1 ; then
-		OP_FORMAT='bundle'
-
-	fi
+	OP_FORMAT='bundle'
 fi
 
 echo "OP_FORMAT=$OP_FORMAT"
