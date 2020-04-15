@@ -13,6 +13,7 @@ env:
 
 before_install:
 # check-pr needs to be sourced so it can pass the test early.
+  echo "****Testing new check"
 - source scripts/ci/check-pr $DISTRO_TYPE
 
 install:

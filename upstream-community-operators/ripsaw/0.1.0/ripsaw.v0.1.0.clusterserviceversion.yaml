@@ -30,7 +30,7 @@ spec:
       kind: Benchmark
       name: benchmarks.ripsaw.cloudbulldozer.io
       version: v1alpha1
-  description: "[Ripsaw](https://github.com/cloud-bulldozer/ripsaw/) is a benchmarking\
+  description: "[Ripsaw](https://github.com/cloud-bulldozer/ripsaw/) is  a benchmarking\
     \ tool to benchmark your kubernetes cluster. Ripsaw fully supports running following:\n\
     * Micro-benchmarks:\n  * [fio](https://github.com/cloud-bulldozer/ripsaw/tree/master/docs/fio_distributed.md)\n\
     \  * [uperf](https://github.com/cloud-bulldozer/ripsaw/tree/master/docs/uperf.md)\n\
