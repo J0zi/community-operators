@@ -2,6 +2,7 @@
 
 eval $(scripts/ci/operators-env)
 
+echo "$(cat /tmp/testable.conf)"
 echo "IS_TESTABLE in run-deployment-tests is $IS_TESTABLE"
 if [[ $IS_TESTABLE -eq 0 ]]; then
   echo "No testable operators or scripts were updated, not running the CI."
