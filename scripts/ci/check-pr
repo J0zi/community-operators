@@ -14,9 +14,8 @@ IS_TESTABLE=0
 
 #force build after merge
 if [[ $(git diff --name-only master |wc -l) -eq 0 ]]; then
-#      echo "IS_TESTABLE=$IS_TESTABLE" > /tmp/testable.conf
-      export IS_TESTABLE=$(echo $IS_TESTABLE)
-      break
+  export IS_TESTABLE=$(echo $IS_TESTABLE)
+  break
 fi
 
 # Only run CI on changes to certain directories.
