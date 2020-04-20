@@ -13,7 +13,8 @@ env:
 
 before_install:
 # check-pr needs to be sourced so it can pass the test early.
-- scripts/ci/check-pr $DISTRO_TYPE
+- source scripts/ci/check-pr $DISTRO_TYPE
+- echo "IS_TESTABLE in Travis is $IS_TESTABLE"
 
 install:
 - scripts/ci/install-deps $DISTRO_TYPE
