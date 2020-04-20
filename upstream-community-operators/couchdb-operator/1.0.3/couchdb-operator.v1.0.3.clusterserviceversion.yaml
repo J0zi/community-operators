@@ -166,7 +166,7 @@ spec:
     * Fully automated deployment and configuration of Apache CouchDB clusters.
     * Support single, multiple, or all namespace install modes.
 
-    #### Security
+    #### Security1
     * TLS - TLS is supported by using user-provided certificates.
     * Authentication - The parameter `require_valid_user` defaults to `true`, which means that no requests are allowed from anonymous users. Every request must be authenticated.
     * Authorization - Databases are initially accessible by Apache CouchDB admins only.
