@@ -1,7 +1,7 @@
 #!/bin/bash
 
 eval $(scripts/ci/operators-env)
-echo "First test: IS_TESTABLE in run-deployment-tests is $IS_TESTABLE"
+
 if [ -z "${IS_TESTABLE}" ];
 then
     if [ -z "${OP_PATH}" ] ;
@@ -16,10 +16,8 @@ then
   make operator.install OP_PATH="${OP_PATH}" OP_VER="${OP_VER}"
 
 else
-    echo "IS_TESTABLE in run-deployment-tests is $IS_TESTABLE"
-
   if [[ $IS_TESTABLE -eq 0 ]]; then
-   echo "Nothing was changed, not running the CI."
+   echo "Nothing was changed, not running deployment tests."
     exit 0
   fi
 fi
