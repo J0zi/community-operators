@@ -2,7 +2,6 @@
 set -e
 
 DIRS=()
-GIT_INFO=""
 
 if [[ "$1" == "openshift" ]]; then
   DIRS=( "community-operators" )
