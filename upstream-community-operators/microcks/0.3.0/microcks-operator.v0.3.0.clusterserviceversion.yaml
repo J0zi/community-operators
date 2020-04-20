@@ -6,7 +6,7 @@ metadata:
   annotations:
     capabilities: Seamless Upgrades
     categories: "Integration & Delivery"
-    description: "Open Source mocking and testing platform for API and microservices"
+    description: "Open Source  mocking and testing platform for API and microservices"
     certified: "false"
     containerImage: quay.io/microcks/microcks-ansible-operator:0.3.0
     createdAt: 2020-04-07T19:21:00Z
