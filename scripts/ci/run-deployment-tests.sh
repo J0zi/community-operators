@@ -2,7 +2,8 @@
 
 eval $(scripts/ci/operators-env)
 
-if [[ -z "${IS_TESTABLE}" ]]; then
+if [ -z "${IS_TESTABLE}" ];
+then
 
   echo "IS_TESTABLE in run-deployment-tests is $IS_TESTABLE"
 
