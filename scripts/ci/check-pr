@@ -12,7 +12,7 @@ fi
 GIT_INFO=master
 IS_TESTABLE=0
 
-#force build after merge
+#Force build after merge
 if [[ $(git diff --name-only master |wc -l) -eq 0 ]]; then
   export IS_TESTABLE=$(echo $IS_TESTABLE)
   break
