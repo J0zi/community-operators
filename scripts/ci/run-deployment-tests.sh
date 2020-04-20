@@ -1,14 +1,21 @@
 #!/bin/bash
 
 eval $(scripts/ci/operators-env)
-      
-if [ -z "${OP_PATH}" ] ; 
-then 
+
+echo "IS_TESTABLE in run-deployment-tests is $IS_TESTABLE"
+if [[ $IS_TESTABLE -eq 0 ]]; then
+  echo "No testable operators or scripts were updated, not running the CI."
+  exit 0
+else
+
+  if [ -z "${OP_PATH}" ] ;
+  then
     echo "No operator modification detected. Exiting."
     exit 0 
-else
+  else
     echo "Detected modified Operator in ${OP_PATH}"
     echo "Detected modified Operator version ${OP_VER}"
-fi
+  fi
       
-make operator.install OP_PATH="${OP_PATH}" OP_VER="${OP_VER}"
+  make operator.install OP_PATH="${OP_PATH}" OP_VER="${OP_VER}"
+fi
