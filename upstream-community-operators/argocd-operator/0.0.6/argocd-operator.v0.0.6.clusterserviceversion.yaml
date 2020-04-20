@@ -440,7 +440,7 @@ spec:
 
     ## Backup
 
-    Backup the cluster above by creating a new ArgoCDExport resource in the namespace where the operator is installed.
+    Backup  the cluster above by creating a new ArgoCDExport resource in the namespace where the operator is installed.
 
     ```
     apiVersion: argoproj.io/v1alpha1
