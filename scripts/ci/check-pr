@@ -15,9 +15,9 @@ GIT_INFO=master
 # Only run CI on changes to certain directories.
 IS_TESTABLE=0
 #force build after merge
+#TODO: reversed logic
 if [[ $(git diff --name-only master |wc -l) -gt 0 ]]; then
-      echo "IS_TESTABLE=$IS_TESTABLE" > /tmp/testable.conf
-      echo "IS_TESTABLE in check-pr is $IS_TESTABLE"
+#      echo "IS_TESTABLE=$IS_TESTABLE" > /tmp/testable.conf
       export IS_TESTABLE=$(echo $IS_TESTABLE)
       break
 fi

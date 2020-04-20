@@ -2,12 +2,22 @@
 
 eval $(scripts/ci/operators-env)
 
-export $(cat /tmp/testable.conf)
+#TESTABLE_FILE=/tmp/testable.conf
+#if [[ -f "$TESTABLE_FILE" ]]; then
+
+#export $(cat $TESTABLE_FILE)
 echo "IS_TESTABLE in run-deployment-tests is $IS_TESTABLE"
+
+
 if [[ $IS_TESTABLE -eq 0 ]]; then
   echo "No testable operators or scripts were updated, not running the CI."
   exit 0
 else
+
+
+
+
+
 
   if [ -z "${OP_PATH}" ] ;
   then
