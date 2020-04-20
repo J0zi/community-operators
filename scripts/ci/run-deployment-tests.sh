@@ -1,7 +1,7 @@
 #!/bin/bash
 
 eval $(scripts/ci/operators-env)
-
+echo "First test: IS_TESTABLE in run-deployment-tests is $IS_TESTABLE"
 if [ -z "${IS_TESTABLE}" ];
 then
 
