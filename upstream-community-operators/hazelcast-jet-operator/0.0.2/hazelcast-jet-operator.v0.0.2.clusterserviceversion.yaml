@@ -53,7 +53,7 @@ spec:
 
     ### Configuration
 
-    For the complete configuration options, please refer to the
+    For  the complete configuration options, please refer to the
     [Hazelcast Jet Helm Chart](https://github.com/helm/charts/tree/master/stable/hazelcast-jet)
     description.
 
