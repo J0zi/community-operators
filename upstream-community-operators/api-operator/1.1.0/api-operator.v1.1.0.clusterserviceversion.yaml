@@ -122,7 +122,7 @@ spec:
 
     ## About this Operator
 
-    API Operator provides a fully automated experience for cloud-native API management. A user can expose an already deployed microservice as an API using the API Operator by providing the API definition of the particular microservice.
+    API Operator provides  a fully automated experience for cloud-native API management. A user can expose an already deployed microservice as an API using the API Operator by providing the API definition of the particular microservice.
 
     Once the API is deployed, it will be deployed as a managed API. Also you will be able to add business plans and security schemes to your micro-services using the available CRDs.
 
