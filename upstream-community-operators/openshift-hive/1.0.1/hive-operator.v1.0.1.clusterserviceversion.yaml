@@ -33,7 +33,7 @@ spec:
     * [Architecture](https://github.com/openshift/hive/blob/master/docs/architecture.md)\n\
     \nSee the [project README](https://github.com/openshift/hive#documentation) for\
     \ more documentation.\n\n## Post Install Configuration\n\nAfter installing the\
-    \ OpenShift Hive operator, create a cluster-scoped `HiveConfig` CR to configure\
+    \ OpenShift Hive operator , create a cluster-scoped `HiveConfig` CR to configure\
     \ Hive.\nUpon creation of `HiveConfig`, the operator will configure Hive's pods.\n\
     \nExample `HiveConfig`:\n```yaml\n---\n  apiVersion: hive.openshift.io/v1\n  kind:\
     \ HiveConfig\n  metadata:\n    name: hive\n  spec:\n    managedDomains:\n    -\

@@ -200,7 +200,7 @@ spec:
         - urn:alm:descriptor:io.kubernetes.conditions
       version: v1
   description: |
-    The Couchbase Autonomous Operator allows users to easily deploy, manage, and maintain Couchbase deployments on OpenShift. By installing this integration you will be able to deply Couchbase Server clusters with a single command.
+    The Couchbase Autonomous Operator  allows users to easily deploy, manage, and maintain Couchbase deployments on OpenShift. By installing this integration you will be able to deply Couchbase Server clusters with a single command.
 
     ## Supported Features
 
