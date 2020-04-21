@@ -108,7 +108,7 @@ spec:
         - urn:alm:descriptor:org.w3:link
       version: v1
   description: |
-    A collaborative Kubernetes-native development solution that delivers Kubernetes workspaces and in-browser IDE for rapid cloud application development.
+    A collaborative Kubernetes-native development solution, that delivers Kubernetes workspaces and in-browser IDE for rapid cloud application development.
     This operator installs PostgreSQL, Keycloak, Registries and the Eclipse Che server, as well as configures all these services.
     ## Prerequisites
     - Operator Lifecycle Manager (OLM) needs to be installed.
