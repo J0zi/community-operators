@@ -137,6 +137,38 @@ Unless of purely cosmectic nature, subsequent updates to your Operator should re
 
 This enables Operator updates being facilitated by OLM on clusters where your Operator is deployed. The CSV being pointed to in the `replaces` property indicate that an existing Operator in that version may be upgraded seamlessly to the new version. It is encouraged to use continuous delivery to update your Operator often as new features are added and bugs are fixed.
 
+#### Workflow for contributing
+
+##### First PR:
+
+* Contributor creates PR from own repo to community-operators:master
+
+* An admin can approve and merge PR
+
+OR
+
+* An admin can review the very first PR and merge or request adjustments.
+
+* Contributor asks admins to add a bunch of people as operator team members
+
+* Admins add users to CODEOWNERS file with a path to a specific operator. Which grants `approve` and `merge` rights on specific operator for all future PRs.
+
+* Admins adds specified people as outside collaborators with `write` rights to community-operators repo also. Users automatically receive an email invitation to the repository.
+
+##### Consecutive PR:
+
+* Contributor creates PR from own repo to community-operators:master
+
+* An admin can approve and merge PR
+
+OR
+
+* Another operator team member must approve PR (contributor's colleague)
+
+* Contributor can merge approved PR
+
+First PR should be checked by the admin. In all future PRs, the contributor decides if operator quality is sufficient. Operator team members are able to merge also operators with red pipeline statuses. Please keep quality of your operator instead.
+
 ### Operator Bundle Editor
 You can now create your Operator bundle using the [bundle editor](https://operatorhub.io/bundle). Starting by uploading your Kubernetes YAML manifests, the forms on the page will be populated with all valid information and used to create the new Operator bundle. You can modify or add properties through these forms as well. The result will be a downloadable ZIP file.
 
