@@ -1,7 +1,7 @@
 #!/bin/bash
 
 eval $(scripts/ci/operators-env)
-
+echo "eval ended..."
 if ls $OP_PATH/*.package.yaml 1> /dev/null 2>&1 ; then
 	OP_FORMAT='package'
 else
