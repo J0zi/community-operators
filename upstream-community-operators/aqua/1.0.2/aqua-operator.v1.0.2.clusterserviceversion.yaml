@@ -176,7 +176,6 @@ spec:
     * Enforcer (sometimes called “agent”)
     * Scanner
     * CSP (package containing the Server, Database, and Gateway - not supported, and not for production environments)
-
     Use the aqua-operator to - 
     * Deploy Aqua Security components on Kubernetes
     * Scale up Aqua Security components with extra replicas
