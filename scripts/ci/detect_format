@@ -1,0 +1,12 @@
+#!/bin/bash
+
+eval $(scripts/ci/operators-env)
+
+if ls $OP_PATH/*.package.yaml 1> /dev/null 2>&1 ; then
+	OP_FORMAT='package'
+else
+	DIR_TO_CHECK=$(ls $OP_PATH|grep '^[0-9]'|awk -F '/' '{print $NF}'|sort -V|tail -n 1)
+	OP_FORMAT='bundle'
+fi
+
+echo "OP_FORMAT=$OP_FORMAT"
