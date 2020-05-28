@@ -1,6 +1,6 @@
 #!/bin/bash
 
-eval $(scripts/ci/operators-env)
+scripts/ci/operators-env 2> /dev/null
 
 if ls $OP_PATH/*.package.yaml 1> /dev/null 2>&1 ; then
 	OP_FORMAT='package'
