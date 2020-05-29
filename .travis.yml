@@ -30,6 +30,6 @@ jobs:
     name: Execute ansible script with path provided
     workspaces:
       use: path
-      script:
+    script:
         - cat path.txt || true
 
