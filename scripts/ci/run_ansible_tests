@@ -36,7 +36,6 @@ for op_distro in "${!OP_TYPES[@]}"; do
       fi
     done
   done
-  export OP_PATH=$OP_PATH
-  export OP_VER=$OP_VER
-  echo "OP_PATH=$OP_PATH"
 done
+
+echo "Here will be excuted ansible playbook on $OP_PATH"
