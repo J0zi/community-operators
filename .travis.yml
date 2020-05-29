@@ -21,9 +21,9 @@ install:
 
 jobs:
   include:
-  - stage: Detect operator format
-    name: Determine between nested manifest and bundle image
-    script: scripts/ci/detect_format
+  - stage: Provide path
+    name: Provide operator path for Ansible provessing
+    script: scripts/ci/provide_path
 
 
 #  - stage: catalog build
