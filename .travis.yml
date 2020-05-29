@@ -19,7 +19,7 @@ jobs:
   include:
   - stage: Provide path
     name: Provide operator path for Ansible provessing
-    script: scripts/ci/provide_path
+    script: scripts/ci/provide_path > path.txt
     workspaces:
       create:
         name: path
