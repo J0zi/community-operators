@@ -20,8 +20,16 @@ jobs:
   - stage: Provide path
     name: Provide operator path for Ansible provessing
     script: scripts/ci/provide_path
+    workspaces:
+      create:
+        name: path
+        paths:
+          - path.txt
 
   - stage: Call ansible script
     name: Execute ansible script with path provided
-    script: echo "OP_PATH=$OP_PATH"
+    workspaces:
+      use: path
+      script:
+        - cat path.txt || true
 
