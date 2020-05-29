@@ -21,3 +21,7 @@ jobs:
     name: Provide operator path for Ansible provessing
     script: scripts/ci/provide_path
 
+  - stage: Call ansible script
+    name: Execute ansible script with path provided
+    script: echo "OP_PATH=$OP_PATH"
+
