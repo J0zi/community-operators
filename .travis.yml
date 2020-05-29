@@ -17,7 +17,7 @@ env:
 #- source scripts/ci/check-pr $DISTRO_TYPE
 #
 install:
-- scripts/ci/install-deps $DISTRO_TYPE
+#- scripts/ci/install-deps $DISTRO_TYPE
 
 jobs:
   include:
