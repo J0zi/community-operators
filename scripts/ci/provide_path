@@ -36,6 +36,7 @@ for op_distro in "${!OP_TYPES[@]}"; do
       fi
     done
   done
-  echo "export OP_PATH=$OP_PATH"
-  echo "export OP_VER=$OP_VER"
+  export OP_PATH=$OP_PATH
+  export OP_VER=$OP_VER
+  echo "OP_PATH=$OP_PATH"
 done
