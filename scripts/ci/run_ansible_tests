@@ -4,6 +4,7 @@ set -e
 
 unset OP_PATH
 unset OP_VER
+[ -e /tmp/op_ver ] && rm /tmp/op_ver
 
 declare -A OP_TYPES
 OP_TYPES=(
@@ -29,6 +30,8 @@ for op_distro in "${!OP_TYPES[@]}"; do
       fi
       if echo "$file" | grep -q "^$op_type"; then
         OP_PATH="$(echo "$file" | awk -F'/' '{ print $1"/"$2 }')"
+        OP_VER="$(echo "$file" | awk -F'/' '{ print $3 }')"
+        echo $OP_VER >> /tmp/op_ver
         if [[ -n "${SEEN[$OP_PATH]}" ]]; then
           continue
         fi
@@ -38,4 +41,5 @@ for op_distro in "${!OP_TYPES[@]}"; do
   done
 done
 
-echo "Here will be excuted ansible playbook on $OP_PATH"
+OP_VER=$(cat /tmp/op_ver|  sort --version-sort | tail -n 1)
+echo "Here will be excuted ansible playbook on $OP_PATH/$OP_VER"
