@@ -44,3 +44,6 @@ done
 
 echo "export OP_VER=$(cat /tmp/op_ver|  sort --version-sort | tail -n 1)"
 echo "export OP_PATH=$OP_PATH"
+if [[ echo $OP_PATH|grep upstream ]]; then
+    echo "export RUN_UPSTREAM=true"
+fi
