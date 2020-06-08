@@ -1,4 +1,5 @@
 #!/bin/bash
+#TODO: handle in case of community-operators
 
 set -e
 
@@ -41,5 +42,5 @@ for op_distro in "${!OP_TYPES[@]}"; do
   done
 done
 
-OP_VER=$(cat /tmp/op_ver|  sort --version-sort | tail -n 1)
-echo "Here will be excuted ansible playbook on $OP_PATH/$OP_VER"
+export OP_VER=$(cat /tmp/op_ver|  sort --version-sort | tail -n 1)
+export OP_PATH=$OP_PATH
