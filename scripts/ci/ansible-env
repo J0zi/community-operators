@@ -42,5 +42,5 @@ for op_distro in "${!OP_TYPES[@]}"; do
   done
 done
 
-export OP_VER=$(cat /tmp/op_ver|  sort --version-sort | tail -n 1)
-export OP_PATH=$OP_PATH
+echo "export OP_VER=$(cat /tmp/op_ver|  sort --version-sort | tail -n 1)"
+echo "export OP_PATH=$OP_PATH"
