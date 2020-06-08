@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 eval $(scripts/ci/ansible-env)
-scripts/ci/install-ansible-prereqs
+#scripts/ci/install-ansible-prereqs
 
 echo "Here will be excuted ansible playbook on $OP_PATH/$OP_VER"
-
-ansible --version
+echo "RUN_UPSTREAM is $RUN_UPSTREAM"
