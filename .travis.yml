@@ -29,5 +29,4 @@ jobs:
     - docker run -d -it --name playbook --net host -v ~/.kube:/root/.kube -v $(pwd):/tmp/community-operators-for-catalog $PLAYBOOK_IMAGE
 
     script:
-    - docker exec -it playbook echo "[defaults]\nhost_key_checking = False" > /etc/ansible/ansible.cfg
     - scripts/ci/run-ansible-tests
