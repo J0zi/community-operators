@@ -27,7 +27,7 @@ jobs:
     script: scripts/ci/run-ansible-tests
   - stage: Integration Tests
     before_script:
-    - ansible-pull -U https://github.com/mvalahtv/operator-test-playbooks -C devel-bundle -i localhost, -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER --tags host_build
+    - ansible-pull -U https://github.com/mvalahtv/operator-test-playbooks -C devel-bundle -i localhost, -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER ansible_distribution=Ubuntu --tags host_build
     - kind get kubeconfig --name operator-test > ~/.kube/config
     - docker run -d -it --name playbook --net host -v ~/.kube:/root/.kube -v $(pwd):/tmp/community-operators-for-catalog $PLAYBOOK_IMAGE
 
