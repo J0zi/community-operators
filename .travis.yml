@@ -32,4 +32,4 @@ jobs:
     - docker run -d -it --name playbook --net host -v ~/.kube:/root/.kube -v $(pwd):/tmp/community-operators-for-catalog $PLAYBOOK_IMAGE
 
     script:
-    - docker exec -it playbook ansible-playbook -vv -i localhost, local.yml -e run_upstream=true -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test
+    - docker exec -it playbook ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -vv -i localhost, local.yml -e run_upstream=true -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test
