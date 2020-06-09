@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
 eval $(scripts/ci/ansible-env)
-#scripts/ci/install-ansible-prereqs
 
-echo "Here will be excuted ansible playbook on $OP_PATH/$OP_VER"
-echo "RUN_UPSTREAM is $RUN_UPSTREAM"
-whoami
+docker exec -it playbook ansible-playbook -vv -i localhost, local.yml -e run_upstream=$RUN_UPSTREAM -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test

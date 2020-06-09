@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-apt-add-repository ppa:ansible/ansible -y
-apt -yq update
-apt -yq install ansible
