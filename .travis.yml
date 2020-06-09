@@ -10,11 +10,26 @@ python:
 - "3.6"
 
 env:
-- DISTRO_TYPE=upstream KIND_VER=v0.7.0 KUBE_VER=v1.17.0 OLM_VER=0.14.1 SDK_VER=v0.16.0
+- DISTRO_TYPE=upstream KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.14.1 SDK_VER=v0.16.0 PLAYBOOK_IMAGE=docker.io/mvala/operator-test-playbooks
+#  -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER (this will be in playbook image already)
+
+
+services:
+  - docker
+
+install:
+  - pip install ansible
 
 jobs:
   include:
   - stage: Call ansible script
     name: Execute ansible script with path provided
     script: scripts/ci/run-ansible-tests
+  - stage: Integration Tests
+    before_script:
+    - ansible-pull -U https://github.com/mvalahtv/operator-test-playbooks -C devel-bundle -i localhost, -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER --tags host_build
+    - kind get kubeconfig --name operator-test > ~/.kube/config
+    - docker run -d -it --name playbook --net host -v ~/.kube:/root/.kube -v $(pwd):/tmp/community-operators-for-catalog $PLAYBOOK_IMAGE
 
+    script:
+    - docker exec -it playbook ansible-playbook -vv -i localhost, local.yml -e run_upstream=true -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --pure-test
