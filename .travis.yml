@@ -10,7 +10,7 @@ python:
 - "3.8"
 
 env:
-- DISTRO_TYPE=upstream KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.14.1 SDK_VER=v0.16.0 PLAYBOOK_IMAGE=quay.io/j0zi/operator-test-playbooks
+- DISTRO_TYPE=upstream KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.14.1 SDK_VER=v0.16.0 PLAYBOOK_REPO=https://github.com/J0zi/operator-test-playbooks PLAYBOOK_BRANCH=PR/RHO-642-package-and-bundle-tests-v2
 
 services:
   - docker
@@ -23,7 +23,7 @@ jobs:
   include:
   - stage: Integration Tests
     # before_script:
-    # - ansible-pull -U https://github.com/mvalahtv/operator-test-playbooks -C devel-bundle -i localhost, -e run_upstream=true -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER --tags host_build --skip-tags always
+    # - ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, -e run_upstream=true -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER --tags host_build --skip-tags always
     # - kind get kubeconfig --name operator-test > ~/.kube/config
     # - docker version
     # - docker run -d -it --name playbook --net host -v ~/.kube:/root/.kube -v $(pwd):/tmp/community-operators-for-catalog $PLAYBOOK_IMAGE
