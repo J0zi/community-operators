@@ -3,4 +3,4 @@
 eval $(scripts/ci/ansible-env)
 
 #docker exec -it playbook ansible-playbook -vv -i host.docker.internal, local.yml --ssh-common-args='-o StrictHostKeyChecking=no' -e run_upstream=$RUN_UPSTREAM -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test
-docker exec -it playbook ansible-playbook -vv -i localhost, local.yml --ssh-common-args='-o StrictHostKeyChecking=no' -e run_upstream=$RUN_UPSTREAM -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test
+docker exec -it playbook ansible-playbook -vv -i localhost, local.yml -e ansible_connection=local -e run_upstream=$RUN_UPSTREAM -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test
