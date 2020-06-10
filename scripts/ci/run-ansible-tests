@@ -6,9 +6,9 @@ BRANCH=PR/RHO-642-package-and-bundle-tests-v2
 eval $(scripts/ci/ansible-env)
 
 # TMP
-OP_PATH="upstream-community-operators/aqua"
-OP_VER"1.0.2"
-RUN_UPSTREAM="true"
+export OP_PATH="upstream-community-operators/aqua"
+export OP_VER"1.0.2"
+export RUN_UPSTREAM="true"
 
 ansible-pull -U $REPO -C $BRANCH -i localhost, local.yml -e ansible_connection=local \
 -e run_upstream=$RUN_UPSTREAM  \
