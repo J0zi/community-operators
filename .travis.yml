@@ -7,15 +7,13 @@ sudo: required
 #if: branch = master
 
 python:
-- "3.6"
+- "3.8"
 
 env:
 - DISTRO_TYPE=upstream KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.14.1 SDK_VER=v0.16.0 PLAYBOOK_IMAGE=quay.io/j0zi/operator-test-playbooks
-#  -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER (this will be in playbook image already)
 
-
-# services:
-#   - docker
+services:
+  - docker
 
 install:
   - pip install ansible
