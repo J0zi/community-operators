@@ -26,6 +26,7 @@ jobs:
   - stage: Integration Tests
     before_script:
     - eval $(scripts/ci/ansible-env)
+    - echo $RUN_UPSTREAM
     - ansible-pull -U https://github.com/mvalahtv/operator-test-playbooks -C devel-bundle -i localhost, -e run_upstream=$RUN_UPSTREAM -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER --tags host_build
     - kind get kubeconfig --name operator-test > ~/.kube/config
     - docker version
