@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
+REPO=https://github.com/J0zi/operator-test-playbooks
+BRANCH=PR/RHO-642-package-and-bundle-tests-v2
+
 eval $(scripts/ci/ansible-env)
-
-sudo rm -rf /usr/bin/python
-
-if [ -f /usr/bin/python3 ]; then
-  sudo ln --symbolic /usr/bin/python3 /usr/bin/python;
-fi
-ls -la /usr/bin/python
-
-docker exec -it playbook ansible-playbook -vv -i localhost, local.yml -e ansible_connection=local -e run_upstream=$RUN_UPSTREAM -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test -e run_remove_catalog_repo=false
+ansible-pull -U $REPO -C $BRANCH -i localhost, local.yml -e ansible_connection=local \
+-e run_upstream=$RUN_UPSTREAM  \
+-e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER \
+-e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER
