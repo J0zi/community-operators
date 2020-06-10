@@ -2,7 +2,7 @@
 
 eval $(scripts/ci/ansible-env)
 
-if [ -f /usr/bin/python3 ] && [ ! -f /usr/bin/python ]; then
+if [ -f /usr/bin/python3 ]; then
   ln --symbolic /usr/bin/python3 /usr/bin/python;
 fi
 ls -la /usr/bin/python
