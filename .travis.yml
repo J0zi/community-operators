@@ -25,7 +25,7 @@ jobs:
     - ansible-pull -U https://github.com/J0zi/operator-test-playbooks -C PR/RHO-642-package-and-bundle-tests-v2 -i localhost, -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER --tags host_build -e ansible_distribution=Ubuntu -e ansible_user_id=travis
     - kind get kubeconfig --name operator-test > ~/.kube/config
     - docker run -d -it --name playbook --net host -v ~/.kube:/root/.kube -v $(pwd):/tmp/community-operators-for-catalog $PLAYBOOK_IMAGE
-    - pip install --upgrade pyyaml
+#    - pip install --upgrade pyyaml
 
     script:
     - scripts/ci/run-ansible-tests

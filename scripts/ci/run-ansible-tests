@@ -2,5 +2,9 @@
 
 eval $(scripts/ci/ansible-env)
 
+if [ -f /usr/bin/python3 ] && [ ! -f /usr/bin/python ]; then
+  ln --symbolic /usr/bin/python3 /usr/bin/python;
+fi
+
 echo "RUN_UPSTREAM=$RUN_UPSTREAM"
 docker exec -it playbook ansible-playbook -vv -i localhost, local.yml -e ansible_connection=local -e run_upstream=$RUN_UPSTREAM -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test -e run_remove_catalog_repo=false
