@@ -5,7 +5,7 @@ eval $(scripts/ci/ansible-env)
 sudo rm -rf /usr/bin/python
 
 if [ -f /usr/bin/python3 ]; then
-  ln --symbolic /usr/bin/python3 /usr/bin/python;
+  sudo ln --symbolic /usr/bin/python3 /usr/bin/python;
 fi
 ls -la /usr/bin/python
 
