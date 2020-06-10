@@ -7,7 +7,7 @@ eval $(scripts/ci/ansible-env)
 
 # TMP
 export OP_PATH="upstream-community-operators/aqua"
-export OP_VER"1.0.2"
+export OP_VER="1.0.2"
 export RUN_UPSTREAM="true"
 
 ansible-pull -U $REPO -C $BRANCH -i localhost, local.yml -e ansible_connection=local \
