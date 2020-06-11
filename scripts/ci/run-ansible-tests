@@ -3,9 +3,9 @@
 eval $(scripts/ci/ansible-env)
 
 # TMP
-export OP_PATH="upstream-community-operators/aqua"
-export OP_VER="1.0.2"
-export RUN_UPSTREAM="true"
+#export OP_PATH="upstream-community-operators/aqua"
+#export OP_VER="1.0.2"
+#export RUN_UPSTREAM="true"
 
 ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, local.yml -e ansible_connection=local \
 -e run_upstream=$RUN_UPSTREAM  \
