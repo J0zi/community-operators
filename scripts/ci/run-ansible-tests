@@ -2,11 +2,12 @@
 
 eval $(scripts/ci/ansible-env)
 
-sudo rm -rf /usr/bin/python
+# TMP
+export OP_PATH="upstream-community-operators/aqua"
+export OP_VER="1.0.2"
+export RUN_UPSTREAM="true"
 
-if [ -f /usr/bin/python3 ]; then
-  sudo ln --symbolic /usr/bin/python3 /usr/bin/python;
-fi
-ls -la /usr/bin/python
-
-docker exec -it playbook ansible-playbook -vv -i localhost, local.yml -e ansible_connection=local -e run_upstream=$RUN_UPSTREAM -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e operator_version=$OP_VER --tags pure-test -e run_remove_catalog_repo=false
+ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, local.yml -e ansible_connection=local \
+-e run_upstream=$RUN_UPSTREAM  \
+-e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER \
+-e operator_dir=$(pwd)/$OP_PATH -e operator_version=$OP_VER -e run_remove_catalog_repo=false -e catalog_repo_dir=$(pwd)
