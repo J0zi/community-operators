@@ -32,3 +32,5 @@ jobs:
   - stage: Release Pipeline
     script:
     - scripts/ci/run-release-upstream
+#TODO:uncomment
+#    if: type = push
