@@ -115,6 +115,7 @@ spec:
 
     ## How to Install
 
+
     Press the **Install** button, choose the upgrade strategy, and wait for the **Installed** Operator status.
 
     When the operator is installed, create a new CR of Kind CheCluster (click the **Create New** button).
