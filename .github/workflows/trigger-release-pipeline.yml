@@ -14,5 +14,5 @@ jobs:
     steps:
     - name: Trigger release pipeline
       run: |
-        body='{"request": {"branch":"developing-release-pipeline "}}'
+        body='{"request": {"branch":"developing-release-pipeline"}}'
         curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "$TRAVIS_TOKEN" -d "$body" https://api.travis-ci.com/repo/J0zi%2Fcommunity-operators/requests
