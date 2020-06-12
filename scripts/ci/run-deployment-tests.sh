@@ -12,7 +12,7 @@ then
     echo "Detected modified Operator in ${OP_PATH}"
     echo "Detected modified Operator version ${OP_VER}"
   fi
-
+  echo "////*********//////*******/////***** OP_PATH=$OP_PATH ////*********//////*******/////*****"
   make operator.install OP_PATH="${OP_PATH}" OP_VER="${OP_VER}"
 
 else

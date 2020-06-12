@@ -3,7 +3,7 @@ language: python
 os: linux
 sudo: required
 
-if: branch = master
+#if: branch = master
 
 python:
 - "3.6"
@@ -28,7 +28,7 @@ jobs:
   - stage: operator deployment test
     name: Test Operator deployment using OLM running on KIND
     script: scripts/ci/run-deployment-tests.sh
-  - stage: operatorhubio prod deploy
-    name: Trigger PROD deploy of operatorhub.io
-    script: scripts/ci/trigger-operatorhubio-ci.sh
-    if: type = push
+#  - stage: operatorhubio prod deploy
+#    name: Trigger PROD deploy of operatorhub.io
+#    script: scripts/ci/trigger-operatorhubio-ci.sh
+#    if: type = push
