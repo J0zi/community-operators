@@ -6,7 +6,7 @@ name: CI
 # events but only for the master branch
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/5 * * * *"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -22,5 +22,5 @@ jobs:
     - name: Trigger release pipeline
       run: |
         body='{"request": {"branch":"developing-release-pipeline "}}'
-        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "$tok" -d "$body" https://api.travis-ci.com/repo/J0zi%2Fcommunity-operators/requests
+        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "$TRAVIS_TOKEN" -d "$body" https://api.travis-ci.com/repo/J0zi%2Fcommunity-operators/requests
         
