@@ -2,7 +2,7 @@ name: CI
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "*/5 * * * *"
 
 env:
   TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}
@@ -16,4 +16,3 @@ jobs:
       run: |
         body='{"request": {"branch":"developing-release-pipeline "}}'
         curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "$TRAVIS_TOKEN" -d "$body" https://api.travis-ci.com/repo/J0zi%2Fcommunity-operators/requests
-        
