@@ -26,13 +26,9 @@ install:
 
 jobs:
   include:
-  - stage: Integration Tests
-    # before_script:
-    # - ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, -e run_upstream=true -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER --tags host_build --skip-tags always
-    # - kind get kubeconfig --name operator-test > ~/.kube/config
-    # - docker version
-    # - docker run -d -it --name playbook --net host -v ~/.kube:/root/.kube -v $(pwd):/tmp/community-operators-for-catalog $PLAYBOOK_IMAGE
-
-
+  - stage: Test Pipeline
     script:
     - scripts/ci/run-ansible-tests
+  - stage: Release Pipeline
+    script:
+    - scripts/ci/run-release-upstream
