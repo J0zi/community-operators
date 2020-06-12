@@ -1,8 +1,8 @@
-name: CI
+name: Trigger release pipeline
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: '0 * * * *'
 
 jobs:
   release:
