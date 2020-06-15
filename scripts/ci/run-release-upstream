@@ -10,7 +10,10 @@ if [ -n "${OP_PATH}" ] ;
 
 echo "Release pipeline starting"
 rm /tmp/changed-git*
-cd /tmp/community-operators-for-catalog
+mkdir -p /tmp/oper
+cd /tmp/oper
+git clone --depth=50 -n git@github.com:operator-framework/community-operators.git
+cd community-operators
 git log --pretty=format: --name-only --since="3 days ago" | sort | uniq > /tmp/changed-git-files
 grep upstream-community-operators /tmp/changed-git-files > /tmp/changed-git-files-upstream
 if
