@@ -16,7 +16,6 @@ git clone --depth=50 -n https://github.com/operator-framework/community-operator
 cd community-operators
 git log --pretty=format: --name-only --since="3 days ago" | sort | uniq > /tmp/changed-git-files
 grep upstream-community-operators /tmp/changed-git-files > /tmp/changed-git-files-upstream
-if
 if [ -f /tmp/changed-git-files-upstream ]; then
     awk -F 'upstream-community-operators/' '{ print $2 }' /tmp/changed-git-files-upstream > /tmp/changed-git-files-upstream-list
     awk -F '/' '{ print $1 }' /tmp/changed-git-files-upstream-list|sort|uniq > /tmp/changed-git-files-upstream-opnames
@@ -27,4 +26,4 @@ else
     CHANGED_OPERATORS=''
 fi
 echo "execute ansible on following"
-echo $CHANGED_OPERATORS
+echo "$CHANGED_OPERATORS"
