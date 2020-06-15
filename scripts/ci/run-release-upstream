@@ -23,3 +23,5 @@ if [ -f /tmp/changed-git-files-upstream ]; then
 else
     CHANGED_OPERATORS=''
 fi
+echo "execute ansible on following"
+echo $CHANGED_OPERATORS
