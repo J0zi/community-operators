@@ -9,7 +9,7 @@ if [ -n "${OP_PATH}" ] ;
   fi
 
 echo "Release pipeline starting"
-rm /tmp/changed-git*
+rm /tmp/changed-git* 2>/dev/null
 mkdir -p /tmp/oper
 cd /tmp/oper
 git clone --depth=50 -n https://github.com/operator-framework/community-operators.git

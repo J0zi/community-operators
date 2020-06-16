@@ -12,9 +12,9 @@ OP_TYPES=(
   ["upstream"]="upstream-community-operators"
   ["openshift"]="community-operators"
 )
-DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
+DIR="$(cd "$(dirname ${BASH_SOURCE[0]}) 2>&1" && pwd)"
 
-for f in "$(cd "$(dirname ${BASH_SOURCE[0]})/.." && pwd)"/lib/*; do
+for f in "$(cd "$(dirname ${BASH_SOURCE[0]})/.. 2>&1" && pwd)"/lib/*; do
   . "$f"
 done
 
