@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-eval $(scripts/ci/ansible-env)
+eval $(scripts/ci/ansible-env 2>&1)
 
 if [ -n "${OP_PATH}" ] ;
   then
