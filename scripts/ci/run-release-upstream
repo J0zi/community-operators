@@ -20,7 +20,7 @@ if [ -f /tmp/changed-git-files-upstream ]; then
     awk -F 'upstream-community-operators/' '{ print $2 }' /tmp/changed-git-files-upstream > /tmp/changed-git-files-upstream-list
     awk -F '/' '{ print $1 }' /tmp/changed-git-files-upstream-list|sort|uniq > /tmp/changed-git-files-upstream-opnames
     sed 's/^/- /' /tmp/changed-git-files-upstream-opnames > /tmp/changed-operators.yaml
-    sed -i "1ioperator_base_dir: /tmp/community-operators-for-catalog/upstream-community-operators\noperators:" /tmp/changed-operators.yaml
+    sed -i "1ioperator_base_dir: $(pwd)/upstream-community-operators\noperators:" /tmp/changed-operators.yaml
     CHANGED_OPERATORS=`cat /tmp/changed-operators.yaml`
 else
     CHANGED_OPERATORS=''
