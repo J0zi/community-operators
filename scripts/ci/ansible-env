@@ -25,10 +25,10 @@ for op_distro in "${!OP_TYPES[@]}"; do
   declare $OP_TYPE_VAR=""
   for op_type in ${OP_TYPES[$op_distro]}; do
     for file in $(git diff master --name-only 2>&1); do
-      # Run on operator packages with file deletions but still exist.
-      if [[ ! -e "$file" && ! -d "$(dirname "$file")" ]]; then
-        continue
-      fi
+#      # Run on operator packages with file deletions but still exist.
+#      if [[ ! -e "$file" && ! -d "$(dirname "$file")" ]]; then
+#        continue
+#      fi
       if echo "$file" | grep -q "^$op_type"; then
         OP_PATH="$(echo "$file" | awk -F'/' '{ print $1"/"$2 }')"
         OP_VER="$(echo "$file" | awk -F'/' '{ print $3 }')"
