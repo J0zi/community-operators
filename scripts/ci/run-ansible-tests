@@ -2,11 +2,6 @@
 
 eval $(scripts/ci/ansible-env)
 
-# TMP
-#export OP_PATH="upstream-community-operators/aqua"
-#export OP_VER="1.0.2"
-#export RUN_UPSTREAM="true"
-
 if [ -z "${OP_PATH}" ] ;
   then
     echo "No operator modification detected. Exiting."
