@@ -12,11 +12,11 @@ OP_TYPES=(
   ["upstream"]="upstream-community-operators"
   ["openshift"]="community-operators"
 )
-DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
-
-for f in "$(cd "$(dirname ${BASH_SOURCE[0]})/.." && pwd)"/lib/*; do
-  . "$f"
-done
+#DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
+#
+#for f in "$(cd "$(dirname ${BASH_SOURCE[0]})/.." && pwd)"/lib/*; do
+#  . "$f"
+#done
 
 # Remove duplicates.
 declare -A SEEN
