@@ -24,6 +24,13 @@ if [ -f /tmp/changed-git-files-upstream ]; then
     CHANGED_OPERATORS=`cat /tmp/changed-operators.yaml`
 else
     CHANGED_OPERATORS=''
+    echo "Nothing to release"
+    exit 0
 fi
-echo "execute ansible on following"
+echo "Input config:"
 echo "$CHANGED_OPERATORS"
+
+ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, local.yml -e ansible_connection=local \
+-e run_upstream=$RUN_UPSTREAM  -e run_remove_catalog_repo=false \
+-e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER \
+--tags deploy_bundles --skip-tags always -e operators_config=/tmp/changed-operators.yaml -e operator_channel_force=stable
