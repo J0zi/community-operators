@@ -6,6 +6,9 @@ sudo: required
 #TODO:uncomment
 #if: branch = master
 
+git:
+  clone: false
+
 python:
 - "3.8"
 
