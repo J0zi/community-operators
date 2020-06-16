@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-#eval $(scripts/ci/ansible-env) 2>/dev/null
-
-if [ $(git diff master --name-only|wc-l) -gt 0 ] ;
+if [ $(git diff master --name-only 2>&1|wc -l) -gt 0 ] ;
   then
     echo "Release pipeline not running for PR, found modified operator."
     exit 0
