@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "git diff:"
+git diff master --name-only 2>&1
 if [ $(git diff master --name-only 2>&1|wc -l) -gt 0 ] ;
   then
     echo "Release pipeline not running for PR, found modified operator."
