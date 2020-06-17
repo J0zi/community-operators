@@ -22,7 +22,6 @@ before_install:
 
 install:
   - pip install ansible jmespath
-  - ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, local.yml -e ansible_connection=local -e run_upstream=true  -e run_remove_catalog_repo=false -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER --tags host_build
 
 jobs:
   include:
