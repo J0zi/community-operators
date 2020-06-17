@@ -18,6 +18,7 @@ ls
 #cd community-operators
 git log --pretty=format: --name-only --since="12 days ago" | sort | uniq > /tmp/changed-git-files
 grep upstream-community-operators /tmp/changed-git-files > /tmp/changed-git-files-upstream
+cat /tmp/changed-git-files-upstream
 if [ $(cat /tmp/changed-git-files-upstream|wc -l) -gt 0 ]; then
     awk -F 'upstream-community-operators/' '{ print $2 }' /tmp/changed-git-files-upstream > /tmp/changed-git-files-upstream-list
     awk -F '/' '{ print $1 }' /tmp/changed-git-files-upstream-list|sort|uniq > /tmp/changed-git-files-upstream-opnames
@@ -34,8 +35,10 @@ echo "$CHANGED_OPERATORS"
 
 pwd
 ls
+#prepre prerequisities
 ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, local.yml -e ansible_connection=local -e run_upstream=true  -e run_remove_catalog_repo=false -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER --tags host_build
 
+#fast run, only bundle/index handling using tags
 ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH -i localhost, local.yml -e ansible_connection=local \
 -e run_upstream=true  -e run_remove_catalog_repo=false \
 -e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER \
