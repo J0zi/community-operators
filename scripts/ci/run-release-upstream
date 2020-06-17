@@ -16,7 +16,7 @@ ls
 #cd /tmp/oper
 #git clone --depth=50 -n https://github.com/operator-framework/community-operators.git
 #cd community-operators
-git log --pretty=format: --name-only --since="30 days ago" | sort | uniq > /tmp/changed-git-files
+git log --pretty=format: --name-only --since="12 days ago" | sort | uniq > /tmp/changed-git-files
 grep upstream-community-operators /tmp/changed-git-files > /tmp/changed-git-files-upstream
 if [ -f /tmp/changed-git-files-upstream ]; then
     awk -F 'upstream-community-operators/' '{ print $2 }' /tmp/changed-git-files-upstream > /tmp/changed-git-files-upstream-list
