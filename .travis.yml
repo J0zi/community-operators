@@ -4,7 +4,7 @@ os: linux
 sudo: required
 
 #TODO:uncomment
-if: branch = developing-release-pipeline
+#if: branch = master
 
 python:
 - "3.8"
@@ -39,4 +39,4 @@ jobs:
     script:
     - scripts/ci/run-release-upstream
 #TODO:uncomment
-    if: type = push
+#    if: type = push
