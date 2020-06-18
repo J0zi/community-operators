@@ -30,6 +30,10 @@ jobs:
     - scripts/ci/run-ansible-tests
   - stage: Release Pipeline
     script:
+    - scripts/ci/test-release-upstream
+    if: type = push
+  - stage: Release Pipeline
+    script:
     - scripts/ci/run-release-upstream
 #TODO:uncomment
 #    if: type = push
