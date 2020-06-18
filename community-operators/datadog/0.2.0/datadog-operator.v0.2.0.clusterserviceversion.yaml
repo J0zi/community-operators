@@ -48,7 +48,8 @@ metadata:
     categories: Logging & Tracing
     certified: "true"
     containerImage: datadog/operator:0.2.0
-    description: Datadog provides a modern monitoring and analytics platform. Gather
+    description: Datadog provides a modern monitoring and analytics platform.
+      Gather
       metrics, logs and traces for full observability of your Kubernetes cluster with
       Datadog Operator.
     repository: https://github.com/DataDog/datadog-operator

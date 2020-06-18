@@ -29,6 +29,7 @@ jobs:
   - stage: Test Pipeline
     script:
     - scripts/ci/run-ansible-tests
+    if: type = pull_request
   - stage: Release Pipeline
     name: Test on specific operator, if realease pipeline is working in general
     script:
