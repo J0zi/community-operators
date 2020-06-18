@@ -33,7 +33,8 @@ jobs:
     name: Test on specific operator, if realease pipeline is working in general
     script:
     - scripts/ci/test-release-upstream
-    if: type = push
+#TODO:uncomment
+#    if: type = push
   - stage: Release Pipeline
     name: Run release pipeline
     script:
