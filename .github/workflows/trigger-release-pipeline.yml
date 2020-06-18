@@ -1,8 +1,9 @@
+#TODO: change target Travis repo to operator-framework%2Fcommunity-operators and save secret
 name: Trigger release pipeline
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 20 * * *'
 
 env:
   TRAVIS_TOKEN: ${{ secrets.TRAVIS_TOKEN }}

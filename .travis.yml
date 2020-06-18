@@ -4,14 +4,15 @@ os: linux
 sudo: required
 
 #TODO:uncomment
-#if: branch = master
+if: branch = developing-release-pipeline
 
 python:
 - "3.8"
 
+#TODO: set redhat-operator-ecosystem/operator-test-playbooks
 env:
 - DISTRO_TYPE=upstream KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.14.1 SDK_VER=v0.16.0 PLAYBOOK_REPO=https://github.com/J0zi/operator-test-playbooks PLAYBOOK_BRANCH=devel-phase-3
-#- DISTRO_TYPE=upstream KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.14.1 SDK_VER=v0.16.0 PLAYBOOK_REPO=https://github.com/J0zi/operator-test-playbooks PLAYBOOK_BRANCH=PR/RHO-642-package-and-bundle-tests-v2
+#- DISTRO_TYPE=upstream KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.14.1 SDK_VER=v0.16.0 PLAYBOOK_REPO=https://github.com/redhat-operator-ecosystem/operator-test-playbooks PLAYBOOK_BRANCH=master
 
 services:
   - docker
@@ -29,11 +30,13 @@ jobs:
     script:
     - scripts/ci/run-ansible-tests
   - stage: Release Pipeline
+    name: Test on specific operator, if realease pipeline is working in general
     script:
     - scripts/ci/test-release-upstream
     if: type = push
   - stage: Release Pipeline
+    name: Run release pipeline
     script:
     - scripts/ci/run-release-upstream
 #TODO:uncomment
-#    if: type = push
+    if: type = push
