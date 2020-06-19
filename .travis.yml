@@ -3,7 +3,7 @@ language: python
 os: linux
 sudo: required
 
-if: branch = master
+#if: branch = master
 
 python:
 - "3.8"
@@ -32,9 +32,9 @@ jobs:
     name: Test on specific operator, if realease pipeline is working in general
     script:
     - scripts/ci/test-release-upstream
-    if: type = push
+#    if: type = push
   - stage: Release Pipeline
     name: Run release pipeline
     script:
     - scripts/ci/run-release-upstream
-    if: type = push
+#    if: type = push
