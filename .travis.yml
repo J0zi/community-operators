@@ -25,15 +25,15 @@ install:
 
 jobs:
   include:
-  - stage: Test pipeline
-#  - stage: Test the test Pipeline (optional)
-    name: Test on specific operator, if test pipeline is working in general
-    script:
-    - scripts/ci/test-ansible-tests
-#  - stage: Test operator
-  - name: Testing your operator
-    script:
-    - scripts/ci/run-ansible-tests
+#  - stage: Test pipeline
+##  - stage: Test the test Pipeline (optional)
+#    name: Test on specific operator, if test pipeline is working in general
+#    script:
+#    - scripts/ci/test-ansible-tests
+##  - stage: Test operator
+#  - name: Testing your operator
+#    script:
+#    - scripts/ci/run-ansible-tests
 
   - stage: Release Pipeline
     name: Test on specific operator, if realease pipeline is working in general
