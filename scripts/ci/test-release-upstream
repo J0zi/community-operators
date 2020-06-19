@@ -29,6 +29,11 @@ echo "operator_base_dir: $(pwd)/upstream-community-operators" > /tmp/tester.yaml
 #-e kind_version=$KIND_VER -e kind_kube_ver=$KUBE_VER -e olm_ver=$OLM_VER -e operator_sdk_version=$SDK_VER \
 #--tags deploy_bundles -e operators_config=/tmp/tester.yaml -e operator_channel_force=stable
 
+
+
+
+docker login -u="framework_automation" -p=$QUAY_TOKEN quay.io
+
 cat <<EOT >> /tmp/tester.yaml
 operators:
 - ripsaw
