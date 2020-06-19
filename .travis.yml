@@ -31,16 +31,16 @@ jobs:
     script:
     - scripts/ci/test-ansible-tests
 #  - stage: Test operator
-    name: Testing your operator
+   - name: Testing your operator
     script:
     - scripts/ci/run-ansible-tests
 #  - stage: Test the release Pipeline (optional)
-    name: Test on specific operator, if realease pipeline is working in general
+   - name: Test on specific operator, if realease pipeline is working in general
     script:
     - scripts/ci/test-release-upstream
 #    if: type = push
 #  - stage: Release operators
-    name: Run release pipeline
+   - name: Run release pipeline
     script:
     - scripts/ci/run-release-upstream
 #    if: type = push
