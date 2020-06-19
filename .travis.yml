@@ -30,7 +30,7 @@ jobs:
 #    name: Test on specific operator, if test pipeline is working in general
 #    script:
 #    - scripts/ci/test-ansible-tests
-##  - stage: Test operator
+
 #  - name: Testing your operator
 #    script:
 #    - scripts/ci/run-ansible-tests
@@ -40,8 +40,8 @@ jobs:
     script:
     - scripts/ci/test-release-upstream
 #    if: type = push
-#  - stage: Release operators
-  - name: Run release pipeline
-    script:
-    - scripts/ci/run-release-upstream
-#    if: type = push
+
+#  - name: Run release pipeline
+#    script:
+#    - scripts/ci/run-release-upstream
+##    if: type = push
