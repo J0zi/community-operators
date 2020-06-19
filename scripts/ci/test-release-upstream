@@ -36,7 +36,7 @@ docker login -u="framework_automation" -p=$QUAY_TOKEN quay.io
 
 cat <<EOT >> /tmp/tester.yaml
 operators:
-- ripsaw
+- eclipse-che
 EOT
 
 #prepre prerequisities
