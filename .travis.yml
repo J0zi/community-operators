@@ -25,20 +25,21 @@ install:
 
 jobs:
   include:
-  - stage: Test the test Pipeline (optional)
+  - stage: Test or deploy
+#  - stage: Test the test Pipeline (optional)
     name: Test on specific operator, if test pipeline is working in general
     script:
     - scripts/ci/test-ansible-tests
-  - stage: Test operator
+#  - stage: Test operator
     name: Testing your operator
     script:
     - scripts/ci/run-ansible-tests
-  - stage: Test the release Pipeline (optional)
+#  - stage: Test the release Pipeline (optional)
     name: Test on specific operator, if realease pipeline is working in general
     script:
     - scripts/ci/test-release-upstream
 #    if: type = push
-  - stage: Release operators
+#  - stage: Release operators
     name: Run release pipeline
     script:
     - scripts/ci/run-release-upstream
