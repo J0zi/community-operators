@@ -20,7 +20,6 @@ services:
 before_install:
 # check-pr needs to be sourced so it can pass the test early.
 - source scripts/ci/check-pr $DISTRO_TYPE
-- setenforce 0
 
 install:
   - pip install ansible jmespath
