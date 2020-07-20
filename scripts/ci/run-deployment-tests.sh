@@ -6,7 +6,7 @@ if [ -z "${IS_TESTABLE}" ];
 then
     if [ -z "${OP_PATH}" ] ;
   then
-    echo "No operator modification detected. Exiting."
+    echo "No operator modification detected. Exiting15."
     exit 0
   else
     echo "Detected modified Operator in ${OP_PATH}"
