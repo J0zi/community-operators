@@ -170,6 +170,7 @@ spec:
   replaces: aqua-operator.v1.0.1
   description: |-
     The Aqua Security Operator runs within a Kubernetes cluster, and provides a means to deploy and manage the Aqua Security cluster and components
+
     * Server (sometimes called “console”)
     * Database (not recommended for production environments)
     * Gateway
