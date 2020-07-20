@@ -34,9 +34,6 @@ for op_distro in "${!OP_TYPES[@]}"; do
     done
   done
 done
-echo "echo '*****************************'"
-echo "cat /tmp/op_ver"
-#echo "awk -F'/' 'NF==13 {print}' infile  > newfile" file ma uz iba hodnoty
 echo "export OP_VER=$(cat /tmp/op_ver 2>/dev/null|  sort --version-sort | tail -n 1)"
 echo "export OP_PATH=$OP_PATH"
 if [[ $(echo $OP_PATH) = upstream* ]]; then
