@@ -37,8 +37,9 @@ echo "$CHANGED_OPERATORS"
 
 pwd
 ls
-##prepre prerequisities
-#ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build
 
 #fast run, only bundle/index handling using tags
-ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,deploy_bundles -e operators_config=/tmp/changed-operators.yaml -e operator_channel_force=stable
+ansible-pull -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,deploy_bundles -e operators_config=/tmp/changed-operators.yaml \
+-e quay_api_token=$AUTOMATION_TOKEN_OP_T \
+-e bundle_registry=quay.io -e bundle_image_namespace=operator_testing \
+-e bundle_index_image_namespace=operator_testing -e bundle_index_image_name=catalog
