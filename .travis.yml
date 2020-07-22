@@ -31,6 +31,9 @@ jobs:
     name: FMO Test Pipeline (failure accepted)
     script:
     - scripts/ci/run-ansible-tests||true
+  - name: FMO Test if release is possible (failure accepted)
+    script:
+    - scripts/ci/run-release-upstream -t||true
 
   - stage: Current Pipeline
     name: Test loading the Operator into the Community Catalog
@@ -48,9 +51,9 @@ jobs:
   - stage: FMO release pipeline
     name: FMO Release Pipeline test (failure accepted)
     script:
-    - scripts/ci/test-release-upstream
+    - scripts/ci/test-release-upstream -s
 #    if: type = push
   - name: FMO Release Pipeline  (failure accepted)
     script:
-    - scripts/ci/run-release-upstream
+    - scripts/ci/run-release-upstream -r
 #    if: type = push
