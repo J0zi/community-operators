@@ -33,9 +33,9 @@ EOT
     ;;
 *) echo "Syntax: $0 [-r|t|s]"
    echo "options:"
-   echo "r     Run release pipeline"
-   echo "t     Testing if release is possible on this specific operator."
-   echo "s     Testing on a sample if release pipeline is working."
+   echo "r     release - Run release pipeline"
+   echo "t     test - Testing locally if release is possible on this specific operator."
+   echo "s     sample - Testing locally on a sample if release pipeline is working."
    echo
 
 esac
