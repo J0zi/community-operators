@@ -48,6 +48,7 @@ spec:
     \ of the secret, this will be referenced in StorageClass.\n1. Namespace where\
     \ the Secret will exist.\n1. Your AWS_ACCESS_KEY_ID base64 encoded.\n1. Your AWS_SECRET_ACCESS_KEY\
     \ base64 encoded.\n```\n # kubectl create -f creds.yaml\nsecret/s3-bucket-owner\
+
     \ created\n```\n### Administrator Creates StorageClass\nThe StorageClass defines\
     \ the name of the provisioner and holds other properties that are needed to provision\
     \ a new bucket, including\nthe Owner Secret and Namespace, and the AWS Region.\n\
