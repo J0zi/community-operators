@@ -43,17 +43,17 @@ jobs:
   - name: Test Operator deployment using OLM running on KIND
     script: scripts/ci/run-deployment-tests.sh
 
-#  - stage: operatorhubio prod deploy
-#    name: Trigger PROD deploy of operatorhub.io
-#    script: scripts/ci/trigger-operatorhubio-ci.sh
-#    if: type = push
+  - stage: operatorhubio prod deploy
+    name: Trigger PROD deploy of operatorhub.io
+    script: scripts/ci/trigger-operatorhubio-ci.sh
+    if: type = push
 
   - stage: FMO release pipeline
     name: FMO Release Pipeline test (failure accepted)
     script:
     - scripts/ci/test-release-upstream -s
-#    if: type = push
+    if: type = push
   - name: FMO Release Pipeline  (failure accepted)
     script:
     - scripts/ci/run-release-upstream -r
-#    if: type = push
+    if: type = push
