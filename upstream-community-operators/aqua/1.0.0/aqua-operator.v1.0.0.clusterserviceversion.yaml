@@ -167,7 +167,7 @@ metadata:
 spec:
   displayName: Aqua Security Operator
   version: 1.0.0
-  replaces: aqua-operator.v0.0.2
+  replaces: aqua-operator.v0.0.205
   description: |-
     The Aqua Security Operator runs within a Kubernetes cluster, and provides a means to deploy and manage the Aqua Security cluster and components
     * Server (sometimes called “console”)
