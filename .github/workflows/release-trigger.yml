@@ -2,7 +2,7 @@ name: Trigger release pipeline
 
 on:
   schedule:
-    - cron: '30 * * * *'
+    - cron: '33 * * * *'
 
 env:
   TRAVIS_TOKEN: ${{ secrets.AUTOMATION_TOKEN_TRAVIS }}
