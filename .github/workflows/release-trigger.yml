@@ -2,7 +2,7 @@ name: Trigger release pipeline
 
 on:
   schedule:
-    - cron: '59 * * * *'
+    - cron: '6 * * * *'
 
 env:
   TRAVIS_TOKEN: ${{ secrets.AUTOMATION_TOKEN_TRAVIS }}
@@ -13,5 +13,10 @@ jobs:
     steps:
     - name: Trigger release pipeline
       run: |
-        body='{"request": {"branch":"release-pipeline-running"}}'
-        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "$body" https://api.travis-ci.com/repo/operator-framework%2Fcommunity-operators/requests
+#        body='{"request": {"branch":"release-pipeline-running"}}'
+        body2='{"request": {"branch":"release-pipeline-running-t"}}'
+#        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "$body" https://api.travis-ci.com/repo/operator-framework%2Fcommunity-operators/requests > api_output.txt
+        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "$body2" https://api.travis-ci.com/repo/J0zi%2Fcommunity-operators/requests > api_output.txt
+        cat api_output.txt
+        cat api_output.txt|grep pending && exit 0
+        exit 1
