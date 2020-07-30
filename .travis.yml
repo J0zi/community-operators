@@ -45,6 +45,11 @@ jobs:
     - scripts/ci/run-release -t
     before_install: skip
 
+  - name: Test if release by bundle pipeline is possible from production registry (beta)
+    script:
+    - scripts/ci/run-release -t prod
+    before_install: skip
+
   - stage: Current Pipeline
     name: Test loading the Operator into the Community Catalog
     install: skip

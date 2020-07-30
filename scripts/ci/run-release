@@ -28,18 +28,18 @@ case "$1" in
     ;;
 -t)  echo  "Testing if release is possible"
         GENERATE_OP_CONF=0
-        echo "operator_base_dir: $(pwd)/$STREAM_NAME" > /tmp/changed-operators-$STREAM_NAME.yaml
-        echo "operators:" >> /tmp/changed-operators-$STREAM_NAME.yaml
-        SINGLE_OPERATOR=$(echo $OP_PATH|awk -F'/' '{print $2}')
-        echo "- $SINGLE_OPERATOR" >> /tmp/changed-operators-$STREAM_NAME.yaml
-        cat /tmp/changed-operators-$STREAM_NAME.yaml
+#        echo "operator_base_dir: $(pwd)/$STREAM_NAME" > /tmp/changed-operators-$STREAM_NAME.yaml
+#        echo "operators:" >> /tmp/changed-operators-$STREAM_NAME.yaml
+#        SINGLE_OPERATOR=$(echo $OP_PATH|awk -F'/' '{print $2}')
+#        echo "- $SINGLE_OPERATOR" >> /tmp/changed-operators-$STREAM_NAME.yaml
+#        cat /tmp/changed-operators-$STREAM_NAME.yaml
         FORCE_RELEASE=1
-
-        if [ "$STREAM_NAME" = "upstream-community-operators" ] ; then CHECK_WITH='quay.io/operatorhubio'
-        else CHECK_WITH='quay.io/openshift-community-operators'
+        if [ "$2" = "prod" ]; then
+            if [ "$STREAM_NAME" = "upstream-community-operators" ] ; then CHECK_WITH='-e production_registry_namespace=quay.io/operatorhubio'
+            else CHECK_WITH='-e production_registry_namespace=quay.io/openshift-community-operators'
+            fi
         fi
-
-        RELEASE_TARGET='-e operators_config=/tmp/changed-operators-'$STREAM_NAME'.yaml -e production_registry_namespace='$CHECK_WITH' -e operator_version='$OP_VER
+        RELEASE_TARGET="-e operator_dir=$OP_PATH -e operator_version=$OP_VER $CHECK_WITH"
     ;;
 -s)  echo  "Testing if release pipeline is working"
         GENERATE_OP_CONF=0
