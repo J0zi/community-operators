@@ -43,6 +43,7 @@ jobs:
   - name: FMO Test if release is possible
     script:
     - scripts/ci/run-release -t
+    before_install: skip
 
   - stage: Current Pipeline
     name: Test loading the Operator into the Community Catalog
