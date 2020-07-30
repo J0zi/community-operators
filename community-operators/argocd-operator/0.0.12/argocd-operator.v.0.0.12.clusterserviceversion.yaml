@@ -446,6 +446,7 @@ spec:
   description: | 
     ## Overview
 
+
     The Argo CD Operator manages the full lifecycle for [Argo CD](https://argoproj.github.io/argo-cd/) and it's
     components. The operator's goal is to automate the tasks required when operating an Argo CD cluster.
 
