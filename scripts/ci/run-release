@@ -39,7 +39,7 @@ case "$1" in
             else CHECK_WITH='-e production_registry_namespace=quay.io/openshift-community-operators'
             fi
         fi
-        RELEASE_TARGET="-e operator_dir=$OP_PATH -e operator_version=$OP_VER $CHECK_WITH"
+        RELEASE_TARGET="-e operator_dir=$(pwd)/$OP_PATH -e operator_version=$OP_VER $CHECK_WITH"
     ;;
 -s)  echo  "Testing if release pipeline is working"
         GENERATE_OP_CONF=0
