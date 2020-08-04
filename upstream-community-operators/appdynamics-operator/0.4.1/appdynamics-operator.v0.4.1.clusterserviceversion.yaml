@@ -76,7 +76,7 @@ spec:
       name: infravizs.appdynamics.com
       version: v1alpha1
       displayName: Infrastructure Visibility
-  description: AppDynamics Operator simplifies the configuration and lifecycle management of the AppDynamics ClusterAgent and the AppDynamics Machine Agent on different Kubernetes distributions and OpenShift. The Operator encapsulates key operational knowledge on how to configure and upgrade the ClusterAgent and the Machine Agent. The custom resources managed by the Operator require a secret with the AppDynamics controller access key to be in place prior to the deployment. Refer to [this installation guide](https://github.com/Appdynamics/appdynamics-operator#operator-deployment) for details.
+  description: AppDynamics Operator  simplifies the configuration and lifecycle management of the AppDynamics ClusterAgent and the AppDynamics Machine Agent on different Kubernetes distributions and OpenShift. The Operator encapsulates key operational knowledge on how to configure and upgrade the ClusterAgent and the Machine Agent. The custom resources managed by the Operator require a secret with the AppDynamics controller access key to be in place prior to the deployment. Refer to [this installation guide](https://github.com/Appdynamics/appdynamics-operator#operator-deployment) for details.
   displayName: Appdynamics Operator
   icon:
     - base64data: >-
