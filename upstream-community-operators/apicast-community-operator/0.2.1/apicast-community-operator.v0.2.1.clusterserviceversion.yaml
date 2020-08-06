@@ -29,6 +29,7 @@ spec:
     The APIcast Operator creates and maintains the 3scale API Gateway in several deployment configurations.
 
 
+
     APIcast is an API gateway built on top of NGINX. It is part of the 3scale API Management Platform.
 
     ### Supported Features
