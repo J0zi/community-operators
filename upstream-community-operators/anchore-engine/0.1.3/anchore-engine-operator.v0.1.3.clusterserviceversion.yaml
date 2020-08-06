@@ -360,7 +360,7 @@ spec:
       displayName: Anchore Engine Operator
       description: Deploys Anchore Engine
       version: v1alpha1
-  description: 'Anchore Engine -  container image scanning service for policy-based security, best-practice and compliance enforcement. The Anchore Engine Operator is based on the [Helm Chart](https://github.com/helm/charts/tree/master/stable/anchore-engine). '
+  description: 'Anchore Engine -   container image scanning service for policy-based security, best-practice and compliance enforcement. The Anchore Engine Operator is based on the [Helm Chart](https://github.com/helm/charts/tree/master/stable/anchore-engine). '
   displayName: Anchore Engine Operator
   maintainers:
   - name: Brady Todhunter
