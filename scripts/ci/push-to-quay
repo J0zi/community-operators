@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+#This will push the application (operator) to Quay appregistry which serves for backwards compatibility
+
+eval $(scripts/ci/app-reg-env)
+
+ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,push_to_quay
