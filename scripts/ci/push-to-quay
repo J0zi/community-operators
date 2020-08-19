@@ -4,4 +4,6 @@
 
 eval $(scripts/ci/app-reg-env)
 
-ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,push_to_quay
+echo $OP_PATH
+
+#ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,push_to_quay -e operator_dir=/tmp/community-operators-for-catalog/community-operators/eclipse-che -e quay_appregistry_api_token=$QUAY_APPREG_TOKEN
