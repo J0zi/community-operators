@@ -5,4 +5,11 @@
 eval $(scripts/ci/app-reg-env)
 echo $OP_PATH
 
-ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,push_to_quay -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e quay_appregistry_api_token=$QUAY_APPREG_TOKEN
+
+if [[ $(echo $OP_PATH) = community* ]]; then
+    ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,push_to_quay -e operator_dir=/tmp/community-operators-for-catalog/$OP_PATH -e quay_appregistry_api_token=$QUAY_APPREG_TOKEN
+
+else
+    echo "No Openshift community-operators modified, nothing to push to old Quay AppRegistry"; exit 0;
+fi
+

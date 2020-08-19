@@ -35,10 +35,4 @@ for op_distro in "${!OP_TYPES[@]}"; do
 done
 echo "export OP_VER=$(cat /tmp/op_ver 2>/dev/null|  sort --version-sort | tail -n 1)"
 echo "export OP_PATH=$OP_PATH"
-if [[ $(echo $OP_PATH) = upstream* ]]; then
-    echo "export RUN_UPSTREAM=true"
-    #for run-release
-    echo "export STREAM_NAME=upstream-community-operators"
-else
-    echo "export STREAM_NAME=community-operators"
-fi
+
