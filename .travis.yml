@@ -73,9 +73,8 @@ jobs:
     name: Trigger release on community-operator-catalog
     script: scripts/ci/trigger-community-op-catalog-ci-release.sh
 
-#TODO: remove
   - stage: Release piepeline (beta)
-#    if: type = push
+    if: type = push
     name: Push to Quay
     script: scripts/ci/push-to-quay
     before_install: skip
