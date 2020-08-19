@@ -78,3 +78,4 @@ jobs:
 #    if: type = push
     name: Push to Quay
     script: scripts/ci/push-to-quay
+    before_install: skip
