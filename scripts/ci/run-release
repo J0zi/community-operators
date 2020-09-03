@@ -5,6 +5,7 @@ eval $(scripts/ci/ansible-env)
 RELEASE_TARGET=''
 GENERATE_OP_CONF=1
 FORCE_RELEASE=0
+PUSH_TO_QUAY_OPT=""
 
 case "$1" in
 
@@ -13,8 +14,13 @@ case "$1" in
         RELEASE_TARGET='-e operators_config=/tmp/changed-operators-'$STREAM_NAME'.yaml -e quay_api_token='$AUTOMATION_TOKEN_RELEASE_UPSTREAM' -e bundle_registry=quay.io -e bundle_image_namespace=operatorhubio -e bundle_index_image_namespace=operatorhubio -e bundle_index_image_name=catalog'
     ;;
 -c)  echo "Release pipeline community"
+#TODO: operator_quay_dir to playbooks and change path here to exported one
+        if ! [ "$PUSH_OPERATOR" = "nothing-to-push" ]; then
+          PUSH_TO_QUAY_OPT=",push_to_quay -e operator_quay_dir=/tmp/export-for-appreg/$PUSH_OPERATOR -e quay_appregistry_api_token=$QUAY_APPREG_TOKEN"
+        fi
+
         STREAM_NAME='community-operators'
-        RELEASE_TARGET='-e operators_config=/tmp/changed-operators-'$STREAM_NAME'.yaml -e quay_api_token='$AUTOMATION_TOKEN_RELEASE_COMMUNITY' -e bundle_registry=quay.io -e bundle_image_namespace=openshift-community-operators -e bundle_index_image_namespace=openshift-community-operators -e bundle_index_image_name=catalog'
+        RELEASE_TARGET=$PUSH_TO_QUAY_OPT'-e operators_config=/tmp/changed-operators-'$STREAM_NAME'.yaml -e quay_api_token='$AUTOMATION_TOKEN_RELEASE_COMMUNITY' -e bundle_registry=quay.io -e bundle_image_namespace=openshift-community-operators -e bundle_index_image_namespace=openshift-community-operators -e bundle_index_image_name=catalog'
     ;;
 -U)  echo "Release pipeline upstream TO A TEST ORGANIZATION!!"
         STREAM_NAME='upstream-community-operators'
@@ -102,4 +108,4 @@ if [[ $(echo $GENERATE_OP_CONF) == 1 ]]; then
     ls
 fi
 #fast run, only bundle/index handling using tags
-ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,deploy_bundles $RELEASE_TARGET
+ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,deploy_bundles$RELEASE_TARGET
