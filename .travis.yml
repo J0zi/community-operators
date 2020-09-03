@@ -3,7 +3,7 @@ language: python
 os: linux
 sudo: required
 
-if: branch = master
+#if: branch = master
 
 python:
 - "3.8"
@@ -13,11 +13,24 @@ env:
 - KIND_VER=v0.8.1 KUBE_VER=v1.18.2 OLM_VER=0.15.1 SDK_VER=v0.16.0 DISTRO_TYPE=upstream PLAYBOOK_VARS="-i localhost, local.yml -e kind_version=v0.8.1 -e kind_kube_ver=v1.18.2 -e olm_ver=0.15.1 -e operator_sdk_version=v0.19.2 -e ansible_connection=local -e run_remove_catalog_repo=false" PLAYBOOK_REPO=https://github.com/J0zi/operator-test-playbooks PLAYBOOK_BRANCH='sprint-10' ANSIBLE_STDOUT_CALLBACK=yaml
 
 
+services:
+ # - docker
+
+before_install:
+# check-pr needs to be sourced so it can pass the test early.
+- source scripts/ci/check-pr $DISTRO_TYPE
+
+install:
+#original
+  - scripts/ci/install-deps $DISTRO_TYPE
+  - pip install ansible jmespath
+
 jobs:
   include:
   - stage: Traffic light - Go/Stop
-#    if: type = pull_request
+    if: type = pull_request
     name: Run tests only on operator modification, otherwise red and stop all tests.
     script:
     - scripts/ci/PR-traffic-light
     install: skip
+    before_install: skip
