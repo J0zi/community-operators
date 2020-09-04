@@ -16,8 +16,8 @@ env:
 services:
   - docker
 
-before_install:
-- source scripts/ci/environment
+#before_install:
+#- source scripts/ci/environment
 
 install:
 # check-pr needs to be sourced so it can pass the test early.
