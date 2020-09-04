@@ -2,8 +2,8 @@ dist: bionic
 language: python
 os: linux
 sudo: required
-
-if: branch = master
+#TODO: uncomment
+#if: branch = master
 
 python:
 - "3.8"
@@ -85,6 +85,6 @@ jobs:
 #    if: type = push
     name: Push to Quay
     script: scripts/ci/push-to-quay
-    services: skip
-    install: skip
-    before_script: skip
+#    services: skip
+#    install: skip
+#    before_script: skip
