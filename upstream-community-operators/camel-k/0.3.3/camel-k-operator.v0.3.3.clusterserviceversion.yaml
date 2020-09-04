@@ -212,3 +212,4 @@ spec:
     matchLabels:
       name: camel-k-operator
   version: 0.3.3
+
