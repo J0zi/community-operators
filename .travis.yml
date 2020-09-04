@@ -31,21 +31,6 @@ before_script:
 
 jobs:
   include:
-#  - stage: Release pipeline (beta)
-#    if: type = push
-#    name: Push to Quay
-#    script: scripts/ci/push-to-quay
-#    services: skip
-#    install: skip
-#    before_script: skip
-
-  - stage: Release pipeline (beta)
-    if: type = push
-    name: Trigger release on community-operator-catalog
-    script: scripts/ci/trigger-community-op-catalog-ci-release.sh
-    services: skip
-    install: skip
-    before_script: skip
 
   - stage: Traffic light - Go/Stop
     if: type = pull_request
@@ -65,11 +50,6 @@ jobs:
     if: type = pull_request
     script: scripts/ci/run-deployment-tests.sh
 
-  - stage: operatorhubio prod deploy
-    if: type = push
-    name: Trigger PROD deploy of operatorhub.io
-    script: scripts/ci/trigger-operatorhubio-ci.sh
-
   - stage: Bundle Test Pipeline (beta)
     if: type = pull_request
     name: Bundle Test Pipeline (beta)
@@ -88,3 +68,23 @@ jobs:
     - scripts/ci/run-release -t prod
     install: skip
 
+  - stage: operatorhubio prod deploy
+    if: type = push
+    name: Trigger PROD deploy of operatorhub.io
+    script: scripts/ci/trigger-operatorhubio-ci.sh
+
+  - stage: Release pipeline (beta)
+    if: type = push
+    name: Trigger release on community-operator-catalog
+    script: scripts/ci/trigger-community-op-catalog-ci-release.sh
+    services: skip
+    install: skip
+    before_script: skip
+
+  - stage: Release pipeline (beta)
+    if: type = push
+    name: Push to Quay
+    script: scripts/ci/push-to-quay
+    services: skip
+    install: skip
+    before_script: skip
