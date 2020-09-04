@@ -5,6 +5,7 @@
 eval $(scripts/ci/app-reg-env)
 echo $OP_PATH
 
+echo "$PLAYBOOK_BRANCH is set"
 
 if [[ $(echo $OP_PATH) = community* ]]; then
 
