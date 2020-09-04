@@ -5,7 +5,7 @@ eval $(scripts/ci/ansible-env)
 RELEASE_TARGET=''
 GENERATE_OP_CONF=1
 FORCE_RELEASE=0
-PUSH_TO_QUAY_OPT=""
+#STREAM_NAME=upstream-community-operators
 
 case "$1" in
 
@@ -14,13 +14,8 @@ case "$1" in
         RELEASE_TARGET='-e operators_config=/tmp/changed-operators-'$STREAM_NAME'.yaml -e quay_api_token='$AUTOMATION_TOKEN_RELEASE_UPSTREAM' -e bundle_registry=quay.io -e bundle_image_namespace=operatorhubio -e bundle_index_image_namespace=operatorhubio -e bundle_index_image_name=catalog'
     ;;
 -c)  echo "Release pipeline community"
-#TODO: operator_quay_dir to playbooks and change path here to exported one
-        if ! [ "$PUSH_OPERATOR" = "nothing-to-push" ]; then
-          PUSH_TO_QUAY_OPT=",push_to_quay -e operator_quay_dir=/tmp/export-for-appreg/$PUSH_OPERATOR -e quay_appregistry_api_token=$QUAY_APPREG_TOKEN"
-        fi
-
         STREAM_NAME='community-operators'
-        RELEASE_TARGET=$PUSH_TO_QUAY_OPT'-e operators_config=/tmp/changed-operators-'$STREAM_NAME'.yaml -e quay_api_token='$AUTOMATION_TOKEN_RELEASE_COMMUNITY' -e bundle_registry=quay.io -e bundle_image_namespace=openshift-community-operators -e bundle_index_image_namespace=openshift-community-operators -e bundle_index_image_name=catalog'
+        RELEASE_TARGET="-e operators_config=/tmp/changed-operators-$STREAM_NAME.yaml -e quay_api_token=$AUTOMATION_TOKEN_RELEASE_COMMUNITY bundle_registry=quay.io -e bundle_image_namespace=openshift-community-operators -e bundle_index_image_namespace=openshift-community-operators -e bundle_index_image_name=catalog"
     ;;
 -U)  echo "Release pipeline upstream TO A TEST ORGANIZATION!!"
         STREAM_NAME='upstream-community-operators'
@@ -32,6 +27,11 @@ case "$1" in
     ;;
 -t)  echo  "Testing if release is possible"
         GENERATE_OP_CONF=0
+#        echo "operator_base_dir: $(pwd)/$STREAM_NAME" > /tmp/changed-operators-$STREAM_NAME.yaml
+#        echo "operators:" >> /tmp/changed-operators-$STREAM_NAME.yaml
+#        SINGLE_OPERATOR=$(echo $OP_PATH|awk -F'/' '{print $2}')
+#        echo "- $SINGLE_OPERATOR" >> /tmp/changed-operators-$STREAM_NAME.yaml
+#        cat /tmp/changed-operators-$STREAM_NAME.yaml
         FORCE_RELEASE=1
         if [ "$2" = "prod" ]; then
             if [ "$STREAM_NAME" = "upstream-community-operators" ] ; then CHECK_WITH='-e production_registry_namespace=quay.io/operatorhubio'
@@ -75,14 +75,14 @@ echo "Release pipeline starting"
 
 if [[ $(echo $GENERATE_OP_CONF) == 1 ]]; then
 
-#remove following paragraph before releasing from linux VM, only valid for Travis
-    echo "Need to clone master, cloning..."
-    mkdir -p /tmp/oper
-    cd /tmp/oper
-    git clone https://github.com/operator-framework/community-operators.git
-    cd community-operators
-    pwd
-    ls
+##remove following paragraph before releasing from linux VM, only valid for Travis
+#    echo "Need to clone master, cloning..."
+#    mkdir -p /tmp/oper
+#    cd /tmp/oper
+#    git clone https://github.com/operator-framework/community-operators.git
+#    cd community-operators
+#    pwd
+#    ls
 
     git log --pretty=format: --name-only --since="1 days ago"
     git log --pretty=format: --name-only --since="1 days ago" | sort | uniq > /tmp/changed-git-files-orig-$STREAM_NAME
@@ -108,4 +108,4 @@ if [[ $(echo $GENERATE_OP_CONF) == 1 ]]; then
     ls
 fi
 #fast run, only bundle/index handling using tags
-ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,deploy_bundles$RELEASE_TARGET
+ansible-pull -vv -U $PLAYBOOK_REPO -C $PLAYBOOK_BRANCH $PLAYBOOK_VARS -e run_upstream=true --tags host_build,deploy_bundles $RELEASE_TARGET
