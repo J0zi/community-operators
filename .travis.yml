@@ -2,7 +2,8 @@ dist: bionic
 language: python
 os: linux
 sudo: required
-if: branch = master
+#TODO:
+#if: branch = master
 
 python:
 - "3.8"
@@ -29,56 +30,56 @@ before_script:
 jobs:
   include:
 
-  - stage: Traffic light - Go/Stop
-    if: type = pull_request
-    name: Run tests only on operator modification, otherwise red and stop all tests.
-    script:
-    - scripts/ci/PR-traffic-light
-    before_script: skip
-
-  - stage: Current Pipeline
-    if: type = pull_request
-    name: Test loading the Operator into the Community Catalog
-    before_script: skip
-    script:
-    - docker build --build-arg PERMISSIVE_LOAD=false -f upstream.Dockerfile -t operatorhub-catalog:dev .
-
-  - name: Test Operator deployment using OLM running on KIND
-    if: type = pull_request
-    script: scripts/ci/run-deployment-tests.sh
-
-  - stage: Bundle Test Pipeline (beta)
-    if: type = pull_request
-    name: Bundle Test Pipeline (beta)
-    script:
-    - scripts/ci/run-ansible-tests
-
-  - name: Test if release by bundle pipeline is possible (beta)
-    if: type = pull_request
-    script:
-    - scripts/ci/run-release -t
-    install: skip
-
-  - name: Test if release by bundle pipeline is possible from production registry (beta)
-    if: type = pull_request
-    script:
-    - scripts/ci/run-release -t prod
-    install: skip
-
-  - stage: operatorhubio prod deploy
-    if: type = push
-    name: Trigger PROD deploy of operatorhub.io
-    script: scripts/ci/trigger-operatorhubio-ci.sh
+#  - stage: Traffic light - Go/Stop
+#    if: type = pull_request
+#    name: Run tests only on operator modification, otherwise red and stop all tests.
+#    script:
+#    - scripts/ci/PR-traffic-light
+#    before_script: skip
+#
+#  - stage: Current Pipeline
+#    if: type = pull_request
+#    name: Test loading the Operator into the Community Catalog
+#    before_script: skip
+#    script:
+#    - docker build --build-arg PERMISSIVE_LOAD=false -f upstream.Dockerfile -t operatorhub-catalog:dev .
+#
+#  - name: Test Operator deployment using OLM running on KIND
+#    if: type = pull_request
+#    script: scripts/ci/run-deployment-tests.sh
+#
+#  - stage: Bundle Test Pipeline (beta)
+#    if: type = pull_request
+#    name: Bundle Test Pipeline (beta)
+#    script:
+#    - scripts/ci/run-ansible-tests
+#
+#  - name: Test if release by bundle pipeline is possible (beta)
+#    if: type = pull_request
+#    script:
+#    - scripts/ci/run-release -t
+#    install: skip
+#
+#  - name: Test if release by bundle pipeline is possible from production registry (beta)
+#    if: type = pull_request
+#    script:
+#    - scripts/ci/run-release -t prod
+#    install: skip
+#
+#  - stage: operatorhubio prod deploy
+#    if: type = push
+#    name: Trigger PROD deploy of operatorhub.io
+#    script: scripts/ci/trigger-operatorhubio-ci.sh
+#
+#  - stage: Release pipeline (beta)
+#    if: type = push
+#    name: Trigger release on community-operator-catalog
+#    script: scripts/ci/trigger-community-op-catalog-ci-release.sh
+#    install: skip
+#    services: skip
+#    before_script: skip
 
   - stage: Release pipeline (beta)
-    if: type = push
-    name: Trigger release on community-operator-catalog
-    script: scripts/ci/trigger-community-op-catalog-ci-release.sh
-    install: skip
-    services: skip
-    before_script: skip
-
-  - stage: Release pipeline (beta)
-    if: type = push
+#    if: type = push
     name: Push to Quay
     script: scripts/ci/push-to-quay
