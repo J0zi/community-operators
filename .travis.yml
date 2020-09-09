@@ -3,6 +3,7 @@ language: python
 os: linux
 sudo: required
 #if: branch = master
+if: type = pull_request
 
 python:
 - "3.8"
@@ -35,7 +36,6 @@ jobs:
     script:
     - scripts/ci/PR-traffic-light
     before_script: skip
-    install: skip
 
   - stage: Current Pipeline
     if: type = pull_request
@@ -53,7 +53,6 @@ jobs:
     name: Bundle Test Pipeline (beta)
     script:
     - scripts/ci/run-ansible-tests
-    install: skip
 
   - name: Test if release by bundle pipeline is possible (beta)
     if: type = pull_request
