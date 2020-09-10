@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 
 eval $(scripts/ci/ansible-env)
+echo
+echo 'diff $TRAVIS_COMMIT_RANGE:'
 git diff "$TRAVIS_COMMIT_RANGE" --name-only
+echo 'diff master:'
+git diff master --name-only
+
 
 if [ -z "${OP_PATH}" ] ;
   then
