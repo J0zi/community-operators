@@ -48,7 +48,7 @@ jobs:
 #    script: scripts/ci/run-deployment-tests.sh
 
   - stage: Bundle Test Pipeline (beta)
-    if: type = pull_request
+#    if: type = pull_request
     name: Bundle Test Pipeline (beta)
     script:
     - scripts/ci/run-ansible-tests
