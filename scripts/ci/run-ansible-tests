@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 eval $(scripts/ci/ansible-env)
+git diff master --name-only 2>&1
 
 if [ -z "${OP_PATH}" ] ;
   then
