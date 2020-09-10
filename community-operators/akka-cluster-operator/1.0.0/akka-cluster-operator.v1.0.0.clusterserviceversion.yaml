@@ -319,3 +319,4 @@ spec:
   version: 1.0.0
   replaces: akka-cluster-operator.v0.2.3
 
+
