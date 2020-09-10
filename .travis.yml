@@ -17,9 +17,9 @@ services:
 #before_install:
 #- source scripts/ci/environment
 
-install:
-# check-pr needs to be sourced so it can pass the test early.
-- source scripts/ci/check-pr $DISTRO_TYPE
+#install:
+## check-pr needs to be sourced so it can pass the test early.
+#- source scripts/ci/check-pr $DISTRO_TYPE
 
 before_script:
 #original
@@ -52,19 +52,19 @@ jobs:
     name: Bundle Test Pipeline (beta)
     script:
     - scripts/ci/run-ansible-tests
-    install: skip
+#    install: skip
 
   - name: Test if release by bundle pipeline is possible (beta)
     if: type = pull_request
     script:
     - scripts/ci/run-release -t
-    install: skip
+#    install: skip
 
   - name: Test if release by bundle pipeline is possible from production registry (beta)
     if: type = pull_request
     script:
     - scripts/ci/run-release -t prod
-    install: skip
+#    install: skip
 
   - stage: operatorhubio prod deploy
     if: type = push
@@ -75,7 +75,7 @@ jobs:
     if: type = push
     name: Trigger release on community-operator-catalog
     script: scripts/ci/trigger-community-op-catalog-ci-release.sh
-    install: skip
+#    install: skip
     services: skip
     before_script: skip
 
