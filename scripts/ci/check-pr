@@ -3,6 +3,8 @@ set -e
 
 DIRS=()
 
+PR_COMMIT=$(git log -n2 --format=format:"%H" | tail -n 1)
+
 if [[ "$1" == "openshift" ]]; then
   DIRS=( "community-operators" )
 else
@@ -18,9 +20,9 @@ if [[ $(git diff --name-only master |wc -l) -eq 0 ]]; then
 fi
 
 # Only run CI on changes to certain directories.
-if git log -m -1 --name-only --first-parent $TRAVIS_COMMIT | grep -q '\.yaml'; then
+if git log -m -1 --name-only --first-parent $PR_COMMIT | grep -q '\.yaml'; then
   for d in "${DIRS[@]}"; do
-    if git log -m -1 --name-only --first-parent $TRAVIS_COMMIT | grep -q "$d"; then
+    if git log -m -1 --name-only --first-parent $PR_COMMIT | grep -q "$d"; then
       IS_TESTABLE=1
       break
     fi
