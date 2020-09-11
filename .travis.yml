@@ -19,7 +19,7 @@ before_install:
 
 install:
 # check-pr needs to be sourced so it can pass release early.
-- source scripts/ci/check-pr $DISTRO_TYPE
+- source scripts/ci/check-release $DISTRO_TYPE
 
 before_script:
 #original
@@ -29,7 +29,7 @@ jobs:
   include:
 
 #TODO: pull only
-  - stage: Traffic light - Go/Stop
+  - stage: Traffic light for all tests - Go/Stop
 #    if: type = pull_request
     name: Run tests only on operator modification, otherwise red and stop all tests.
     script:
