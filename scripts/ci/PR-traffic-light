@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
 eval $(scripts/ci/ansible-env)
-
+git log|head -n 100
+echo "$TRAVIS_COMMIT"
 echo "Diffs detected:"
 git log -m -1 --name-only --first-parent $TRAVIS_COMMIT
+
 
 if [ -n "${OP_PATH}" ];
   then
