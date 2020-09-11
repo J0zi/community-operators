@@ -35,6 +35,7 @@ jobs:
     script:
     - scripts/ci/PR-traffic-light
     before_script: skip
+    install: skip
 
   - stage: Current Pipeline
     if: type = pull_request
