@@ -167,3 +167,4 @@ spec:
     matchLabels:
       name: apicurito-operator
   version: 0.1.0
+
