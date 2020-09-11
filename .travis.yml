@@ -29,7 +29,7 @@ before_script:
 jobs:
   include:
 
-#TODO: no install skip
+#TODO: no install skip, pull only
   - stage: Traffic light - Go/Stop
     if: type = pull_request
     name: Run tests only on operator modification, otherwise red and stop all tests.
