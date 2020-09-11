@@ -2,6 +2,9 @@
 
 eval $(scripts/ci/ansible-env)
 
+echo "Diffs detected:"
+git log -m -1 --name-only --first-parent $TRAVIS_COMMIT
+
 if [ -n "${OP_PATH}" ];
   then
     echo "Found modified operator. Green light."
