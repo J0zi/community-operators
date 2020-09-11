@@ -5,6 +5,8 @@ git log|head -n 100
 echo '$TRAVIS_COMMIT'
 echo "$TRAVIS_COMMIT"
 git log -n1 --format=format:"%H"
+echo "****looking for:"
+git log -n2 --format=format:"%H" | tail -n 1
 echo "Diffs detected:"
 git log -m -1 --name-only --first-parent $TRAVIS_COMMIT
 
