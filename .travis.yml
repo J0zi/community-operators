@@ -30,7 +30,7 @@ jobs:
 
 #TODO: pull only
   - stage: Traffic light for all tests - Go/Stop
-#    if: type = pull_request
+    if: type = pull_request
     name: Run tests only on operator modification, otherwise red and stop all tests.
     script:
     - scripts/ci/PR-traffic-light
@@ -80,6 +80,7 @@ jobs:
     name: Trigger PROD deploy of operatorhub.io
     script: scripts/ci/trigger-operatorhubio-ci.sh
     before_install: skip
+    before_script: skip
 
   - stage: Release pipeline (beta)
     if: type = push

@@ -3,18 +3,11 @@
 
 eval $(scripts/ci/ansible-env)
 git log|head -n 100
-echo '$TRAVIS_COMMIT'
-echo "$TRAVIS_COMMIT"
-echo "The last commit:"
-git log -n1 --format=format:"%H"
 echo
 echo "N-1 commit:"
 git log -n2 --format=format:"%H" | tail -n 1
 echo "Diffs detected:"
 git log -m -1 --name-only --first-parent $PR_COMMIT
-echo 'git diff --name-only master'
-git diff --name-only master
-
 
 if [ -n "${OP_PATH}" ];
   then
