@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Pass release without action if no operator modification
-
+echo "1. check-release started"
 set -e
 
 DIRS=()
@@ -18,7 +18,9 @@ IS_TESTABLE=0
 # Only run CI on changes to certain directories.
 
 for d in "${DIRS[@]}"; do
-  if git log -m -1 --name-only --first-parent $PR_COMMIT | grep -q "$d"; then
+  echo "2. going to check git log"
+  if git log -m -1 --name-only --first-parent "$PR_COMMIT" | grep -q "$d" ; then
+    echo "3. is testable:)"
     IS_TESTABLE=1
     break
   fi
