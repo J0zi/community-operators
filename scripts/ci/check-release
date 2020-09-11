@@ -7,18 +7,18 @@ DIRS=()
 
 PR_COMMIT=$(git log -n2 --format=format:"%H" | tail -n 1)
 
-if [[ "$1" == "openshift" ]]; then
-  DIRS=( "community-operators" )
-else
-  DIRS=( "upstream-community-operators" )
-fi
+#if [[ "$1" == "openshift" ]]; then
+  DIRS=( "community-operators" ) # upstream or community, doesnt matter, all contains `community-operators`
+#else
+#  DIRS=( "upstream-community-operators" )
+#fi
 
 IS_TESTABLE=0
 
 # Only run CI on changes to certain directories.
 
 for d in "${DIRS[@]}"; do
-  echo "2. going to check git log"
+  echo "2. going to check git log grepping $d"
   if git log -m -1 --name-only --first-parent "$PR_COMMIT" | grep -q "$d" ; then
     echo "3. is testable:)"
     IS_TESTABLE=1
