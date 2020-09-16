@@ -33,7 +33,7 @@ jobs:
     name: Run tests only on operator modification, otherwise red and stop all tests.
     script:
 #    - scripts/ci/PR-traffic-light
-     - echo "Travis commit is **********$TRAVIS_COMMIT*************"
+     - echo "Travis commit range is **********$TRAVIS_COMMIT_RANGE*************"
     before_script: skip
     install: skip
     services: skip
