@@ -257,3 +257,4 @@ spec:
     - 'scan'
     - 'scanning'
   replaces: snyk-operator.v1.32.3
+
