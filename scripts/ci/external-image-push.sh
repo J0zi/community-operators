@@ -11,7 +11,7 @@ git clone https://github.com/J0zi/community-operators.git
 cd community-operators
 git checkout oper-for-my-test
 ls
-#TARGET_PATH='/tmp/oper-for-me-test/community-operators/community-operators'
+TARGET_PATH='/tmp/oper-for-me-test/community-operators/community-operators'
 
 #TODO: check
 COMMIT=$(git --no-pager log -n1 --format=format:"%H" | tail -n 1)
@@ -43,10 +43,10 @@ echo "OP_VER=$OP_VER"
 
 #detection end
 pwd
+ls
 mkdir -p /tmp/.ansible-pulled
 cd /tmp/.ansible-pulled
-#  ansible-pull -d /tmp/.ansible-pulled -vv -U https://github.com/redhat-operator-ecosystem/operator-test-playbooks -C upstream-community -vv -i localhost, deploy-olm-operator-openshift-upstream.yml -e ansible_connection=local -e package_name=$OP_NAME -e operator_dir=$TARGET_PATH/$OP_NAME -e op_version=$OP_VER -e openshift_robot_hash=
-#ansible-pull -d /tmp/.ansible-pulled -U https://github.com/redhat-operator-ecosystem/operator-test-playbooks -C upstream-community -i localhost, local.yml -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false --tags host_build,deploy_bundles -e operator_dir=/home/travis/build/operator-framework/community-operators/upstream-community-operators/tidb-operato -e openshift_robot_hash=
+#ansible-pull -d /tmp/.ansible-pulled -U https://github.com/redhat-operator-ecosystem/operator-test-playbooks -C upstream-community -i localhost, local.yml -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false --tags host_build,deploy_bundles -e operator_dir=$TARGET_PATH/$OP_NAME -e openshift_robot_hash='quay..|tk|hash'
 echo "Variable summary:"
 echo "OP_NAME=$OP_NAME"
 echo "OP_VER=$OP_VER"
