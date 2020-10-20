@@ -3,7 +3,8 @@ version: 2.1
 jobs:
   build-job:
     docker:
-      - image: cimg/base:2020.01
+#      - image: cimg/base:2020.01
+      - image: quay.io/operator_testing/operator-test-playbooks
     steps:
      - checkout
      - run:
