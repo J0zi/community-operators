@@ -2,6 +2,7 @@
 #This scripts is configured in .circleci/config.yml
 
 set -e #fail in case of non zero return
+$TEMP_LOCATION_FOR_TESTING=''
 
 #temp test
 echo "Need to clone test branch, cloning..."
@@ -23,6 +24,10 @@ git --no-pager log --oneline|head
 echo
 echo "Source commit details:"
 git --no-pager log -m -1 --name-only --first-parent $COMMIT
+
+TESTING_HASH=$(git --no-pager log -n2 --pretty=format:%h  | tail -n 1)
+echo "TESTING_HASH=$TESTING_HASH"
+OPENSHIFT_TESTING_HASH="$TEMP_LOCATION_FOR_TESTING|$OAUT_OPERATOR_TESTING_TOKEN|$TESTING_HASH"
 
 declare -A CHANGED_FILES
 ##community only
@@ -46,7 +51,7 @@ pwd
 ls
 mkdir -p /tmp/.ansible-pulled
 cd /tmp/.ansible-pulled
-#ansible-pull -d /tmp/.ansible-pulled -U https://github.com/redhat-operator-ecosystem/operator-test-playbooks -C upstream-community -i localhost, local.yml -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false --tags host_build,deploy_bundles -e operator_dir=$TARGET_PATH/$OP_NAME -e openshift_robot_hash='quay..|tk|hash'
+#ansible-pull -d /tmp/.ansible-pulled -U https://github.com/redhat-operator-ecosystem/operator-test-playbooks -C upstream-community -i localhost, local.yml -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false --tags host_build,deploy_bundles -e operator_dir=$TARGET_PATH/$OP_NAME -e openshift_robot_hash=$OPENSHIFT_TESTING_HASH
 echo "Variable summary:"
 echo "OP_NAME=$OP_NAME"
 echo "OP_VER=$OP_VER"
