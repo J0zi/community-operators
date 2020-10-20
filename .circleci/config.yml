@@ -1,0 +1,20 @@
+version: 2.1
+
+jobs:
+  build-job:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+     - checkout
+     - run:
+        name: Check Scripts
+        command: |
+          scripts/ci/external-image-push.sh
+
+workflows:
+  push-images:
+    jobs:
+      - build-job:
+          filters:
+            branches:
+              only: circleci-project-setup # only run build-job on master branch
