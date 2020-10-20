@@ -42,7 +42,7 @@ echo "OP_NAME=$OP_NAME"
 echo "OP_VER=$OP_VER"
 
 #detection end
-
+pwd
 mkdir -p /tmp/.ansible-pulled
 cd /tmp/.ansible-pulled
 #  ansible-pull -d /tmp/.ansible-pulled -vv -U https://github.com/redhat-operator-ecosystem/operator-test-playbooks -C upstream-community -vv -i localhost, deploy-olm-operator-openshift-upstream.yml -e ansible_connection=local -e package_name=$OP_NAME -e operator_dir=$TARGET_PATH/$OP_NAME -e op_version=$OP_VER -e openshift_robot_hash=
