@@ -7,7 +7,7 @@ jobs:
     steps:
      - checkout
      - run:
-        name: Check Scripts
+        name: Build and push
         command: |
           scripts/ci/external-image-push.sh
 

@@ -3,6 +3,16 @@
 
 set -e #fail in case of non zero return
 
+#temp test
+echo "Need to clone test branch, cloning..."
+mkdir -p /tmp/oper-for-me-test
+cd /tmp/oper-for-me-test
+git clone https://github.com/J0zi/community-operators.git
+cd community-operators
+git checkout oper-for-my-test
+ls
+#TARGET_PATH='/tmp/oper-for-me-test/community-operators/community-operators'
+
 #TODO: check
 COMMIT=$(git --no-pager log -n1 --format=format:"%H" | tail -n 1)
 echo
