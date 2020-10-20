@@ -2,7 +2,7 @@
 #This scripts is configured in .circleci/config.yml
 
 set -e #fail in case of non zero return
-$TEMP_LOCATION_FOR_TESTING=''
+$TEMP_LOCATION_FOR_TESTING='quay.io/operator_testing'
 
 #temp test
 echo "Need to clone test branch, cloning..."
