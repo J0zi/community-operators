@@ -51,8 +51,10 @@ pwd
 ls
 mkdir -p /tmp/.ansible-pulled
 cd /tmp/.ansible-pulled
+echo "target commit is $TESTING_HASH"
 #ansible-pull -d /tmp/.ansible-pulled -U https://github.com/redhat-operator-ecosystem/operator-test-playbooks -C upstream-community -i localhost, local.yml -e ansible_connection=local -e run_upstream=true -e run_remove_catalog_repo=false --tags host_build,deploy_bundles -e operator_dir=$TARGET_PATH/$OP_NAME -e openshift_robot_hash=$OPENSHIFT_TESTING_HASH
 echo "Variable summary:"
 echo "OP_NAME=$OP_NAME"
 echo "OP_VER=$OP_VER"
+echo "target commit is $TESTING_HASH"
 pwd
