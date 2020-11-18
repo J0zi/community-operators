@@ -397,4 +397,4 @@ spec:
     name: Red Hat
   replaces: jenkins-operator.v0.6.0
   selector: {}
-  version: 0.6.0
+  version: 0.7.0
