@@ -80,10 +80,10 @@ echo
 echo "cat mock scrt"
 cat /var/run/cred/tst|true
 
-#curl -u J0zi:$(cat /var/run/cred/jtkn) \
-#-X POST \
-#-H "Accept: application/vnd.github.v3+json" \
-#https://api.github.com/repos/J0zi/test/dispatches --data '{"event_type": "test-from-robot"}'|true
+curl -u J0zi:$(cat /var/run/cred/jtkn) \
+-X POST \
+-H "Accept: application/vnd.github.v3+json" \
+https://api.github.com/repos/J0zi/test/dispatches --data '{"event_type": "test-from-robot"}'|true
 
 #echo
 #echo "podman version:"
