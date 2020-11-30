@@ -70,7 +70,9 @@ echo "OP_VER=$OP_VER"
 #echo "Forced specific operator - $OP_NAME $OP_VER $COMMIT"
 
 cd aqua
-
+export
+echo
+export|grep 2502
 echo "**** Temp tests: ***"
 
 echo
