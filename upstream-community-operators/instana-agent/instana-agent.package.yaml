@@ -1,4 +1,0 @@
-channels:
-- currentCSV: instana-agent-operator.v0.3.9
-  name: beta
-packageName: instana-agent

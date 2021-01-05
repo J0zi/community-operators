@@ -1,4 +1,0 @@
-channels:
-- currentCSV: eclipse-che.v7.23.0
-  name: stable
-packageName: eclipse-che
