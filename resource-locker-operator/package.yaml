@@ -1,0 +1,5 @@
+packageName: resource-locker-operator
+channels:
+- name: alpha
+  currentCSV: resource-locker-operator.v1.0.0
+defaultChannel: alpha
