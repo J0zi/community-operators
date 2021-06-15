@@ -18,7 +18,7 @@ jobs:
 #            console.log(context.payload.client_payload.source_pr)
 #            console.log(context.payload.client_payload.remove_labels)
 #            console.log(context.payload.client_payload.add_labels)
-        continue-on-error: true
+#        continue-on-error: true
       - name: "Remove labels"
         uses: actions/github-script@v4
         with:
